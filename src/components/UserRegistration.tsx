@@ -1,12 +1,24 @@
+import { useState } from "react";
 import Input from "../shared/DesignSystem/input/Input";
 import DropDown from "./DropDown";
 
 const UserRegistration = () => {
+  const [roleState, setRoleState] = useState("");
+
+  const OnChangeStateOfRole = (e: string) => {
+    setRoleState(e);
+  };
+
   return (
     <div>
       <form>
         <div className="flex px-5 py-3 gap-3 justify-between flex-wrap">
-          <DropDown dropdownOptions={roleDropdown} title="Role" id="role" />
+          <DropDown
+            dropdownOptions={roleDropdown}
+            title="Role"
+            id="role"
+            onChange={OnChangeStateOfRole}
+          />
 
           <Input
             id="firstName"
@@ -54,16 +66,14 @@ const UserRegistration = () => {
             label="Photo"
           />
 
-          <DropDown dropdownOptions={genderOption} title="Gender" id="gender" />
-
-          <Input
-            id="rollNumber"
-            type="text"
-            placeholder="Roll number"
-            label="Roll Number"
+          <DropDown
+            onChange={() => {}}
+            dropdownOptions={genderOption}
+            title="Gender"
+            id="gender"
           />
 
-          <DropDown dropdownOptions={classesOption} title="Class" id="Class" />
+          {roleState === "STUDENT" ? <StudentData /> : <StaffData />}
 
           <div className="flex justify-center items-center mt-6">
             <button className=" flex px-23 py-2 text-md rounded cursor-pointer bg-violet-600 font-bold transition-all duration-500 hover:bg-green-500 hover:text-green-900 ">
@@ -78,16 +88,86 @@ const UserRegistration = () => {
 
 export default UserRegistration;
 
+const StudentData = () => {
+  return (
+    <>
+      <Input
+        id="rollNumber"
+        type="text"
+        placeholder="Roll number"
+        label="Roll Number"
+      />
+      <DropDown
+        onChange={() => {}}
+        dropdownOptions={classesOption}
+        title="Class"
+        id="Class"
+      />
+    </>
+  );
+};
+
+const StaffData = () => {
+  return (
+    <>
+      <Input
+        id="empId"
+        type="text"
+        placeholder="Employee Id"
+        label="Employee Id"
+      />
+      <Input
+        id="department"
+        type="text"
+        placeholder="Department"
+        label="Department"
+      />
+      <Input id="salary" type="text" placeholder="Salary" label="Salary" />
+
+      <Input
+        id="qualification"
+        type="text"
+        placeholder="Qualification"
+        label="Qualification"
+      />
+      <Input
+        id="experience"
+        type="text"
+        placeholder="Experience"
+        label="Year of Experience"
+      />
+      <Input
+        id="joinDate"
+        type="date"
+        placeholder="Joining Date"
+        label="Joining Date"
+      />
+      <Input
+        id="classTeacher"
+        type="text"
+        placeholder="Class Teacher"
+        label="Class Teacher"
+      />
+      <Input
+        id="staffData"
+        type="text"
+        placeholder="Staff description"
+        label="Staff description"
+      />
+    </>
+  );
+};
+
 // ! for the role option defined
 
-type Role = "SUPER_ADMIN" | "ADMIN" | "STUDENT" | "TEACHER" | "ACCOUNTANT";
+type Role = "ADMIN" | "STUDENT" | "TEACHER" | "ACCOUNTANT";
 
 interface IRoleDropdown {
   title: Role;
 }
 
 export const roleDropdown: IRoleDropdown[] = [
-  { title: "SUPER_ADMIN" },
+  // { title: "SUPER_ADMIN" },
   { title: "ADMIN" },
   { title: "STUDENT" },
   { title: "TEACHER" },
