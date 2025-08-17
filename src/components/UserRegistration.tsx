@@ -6,6 +6,8 @@ const UserRegistration = () => {
     <div>
       <form>
         <div className="flex px-5 py-3 gap-3 justify-between flex-wrap">
+          <DropDown dropdownOptions={roleDropdown} title="Role" id="role" />
+
           <Input
             id="firstName"
             type="text"
@@ -37,9 +39,6 @@ const UserRegistration = () => {
             placeholder="dd-mm-yyyy"
             label="Date of Birth"
           />
-          {/* <div>
-            <MyDatePicker />
-          </div> */}
 
           <Input
             id="address"
@@ -47,12 +46,7 @@ const UserRegistration = () => {
             placeholder="Address"
             label="Address"
           />
-          <Input
-            id="gender"
-            type="text"
-            placeholder="Male | Female | Others"
-            label="Gender"
-          />
+
           <Input
             id="image"
             type="file"
@@ -60,12 +54,7 @@ const UserRegistration = () => {
             label="Photo"
           />
 
-          <Input
-            id="classId"
-            type="text"
-            placeholder="Class..."
-            label="Class"
-          />
+          <DropDown dropdownOptions={genderOption} title="Gender" id="gender" />
 
           <Input
             id="rollNumber"
@@ -74,8 +63,8 @@ const UserRegistration = () => {
             label="Roll Number"
           />
 
-          {/* <Input id="role" type="text" placeholder="Role" label="Role" /> */}
-          <DropDown />
+          <DropDown dropdownOptions={classesOption} title="Class" id="Class" />
+
           <div className="flex justify-center items-center mt-6">
             <button className=" flex px-23 py-2 text-md rounded cursor-pointer bg-violet-600 font-bold transition-all duration-500 hover:bg-green-500 hover:text-green-900 ">
               Submit
@@ -88,3 +77,67 @@ const UserRegistration = () => {
 };
 
 export default UserRegistration;
+
+// ! for the role option defined
+
+type Role = "SUPER_ADMIN" | "ADMIN" | "STUDENT" | "TEACHER" | "ACCOUNTANT";
+
+interface IRoleDropdown {
+  title: Role;
+}
+
+export const roleDropdown: IRoleDropdown[] = [
+  { title: "SUPER_ADMIN" },
+  { title: "ADMIN" },
+  { title: "STUDENT" },
+  { title: "TEACHER" },
+  { title: "ACCOUNTANT" },
+];
+
+// ! for gender
+type Gender = "Male" | "Female" | "Other";
+
+interface IGenderDropdown {
+  title: Gender;
+}
+
+export const genderOption: IGenderDropdown[] = [
+  { title: "Male" },
+  { title: "Female" },
+  { title: "Other" },
+];
+
+// ! for classes
+
+type DropDownClass =
+  | "Nursery"
+  | "K.G"
+  | "One"
+  | "Two"
+  | "Three"
+  | "Four"
+  | "Five"
+  | "Six"
+  | "Seven"
+  | "Eight"
+  | "Nine"
+  | "Ten";
+
+interface IClassDropDown {
+  title: DropDownClass;
+}
+
+export const classesOption: IClassDropDown[] = [
+  { title: "Nursery" },
+  { title: "K.G" },
+  { title: "One" },
+  { title: "Two" },
+  { title: "Three" },
+  { title: "Four" },
+  { title: "Five" },
+  { title: "Six" },
+  { title: "Seven" },
+  { title: "Eight" },
+  { title: "Nine" },
+  { title: "Ten" },
+];
