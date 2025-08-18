@@ -49,15 +49,16 @@ const Dashboard = () => {
           {adminDashboardConfig.calculationCard.map(
             ({ title, data, subTitle, Icon, hoverBg }) => (
               <div
+                key={title}
                 className={`bg-[#4957EF] rounded text-gray-100 text-sm px-5 py-4 w-74 flex items-center justify-between transition duration-500 ease-in-out hover:bg-${hoverBg} hover:text-green-900 `}
               >
                 <div className="px-2 font-bold ">
                   <p>{title}</p>
                   <h1 className="text-2xl ">{data}</h1>
-                  <p className="text-sm flex ">
+                  <div className="text-sm flex ">
                     <div>{/* <RiArrowDropUpFill /> */}</div>
                     <p>{subTitle}</p>
-                  </p>
+                  </div>
                 </div>
                 <div>
                   <Icon size={"45px"} />

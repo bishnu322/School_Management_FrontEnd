@@ -2,7 +2,7 @@ import UserRegistration from "../components/userRegistration/UserRegistration";
 
 const ManageStudent = () => {
   return (
-    <div className="w-[80vw] text-gray-300 p-5">
+    <div className="w-full text-gray-300 p-5">
       {/* manage student title */}
       <div className="title">
         <h1 className="text-2xl font-semibold font-sans text-green-600">

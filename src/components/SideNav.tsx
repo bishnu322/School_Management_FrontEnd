@@ -7,6 +7,7 @@ import {
   RiPresentationFill,
   RiUser3Fill,
 } from "@remixicon/react";
+import { useState } from "react";
 import { NavLink } from "react-router";
 
 const sideNavConfig = {
@@ -46,8 +47,10 @@ const sideNavConfig = {
 };
 
 const SideNav = () => {
+  const [toggleSideNav, setToggleSideNav] = useState(false);
+
   return (
-    <div className="w-[20vw] bg-[#0A2335] h-full min-h-[100vh] py-5 text-gray-200">
+    <div className="w-full fixed sm:w-[300px] sm:static z-100 bg-[#0A2335] h-full min-h-[100vh] py-5 text-gray-200">
       <div className="text-2xl font-semibold flex gap-2 items-center px-5">
         <RiDashboardHorizontalFill />
         DashBoard

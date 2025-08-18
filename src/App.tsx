@@ -2,7 +2,7 @@ import "./App.css";
 import Dashboard from "./components/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import Home from "./pages/Home";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import { BrowserRouter, Routes, Route } from "react-router";
 
 const App = () => {

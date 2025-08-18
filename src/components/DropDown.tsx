@@ -40,7 +40,7 @@ const DropDown: React.FC<DropDownProps> = ({
   // register,
 }) => {
   return (
-    <div className="flex flex-col  gap-2 font-semibold w-60">
+    <div className="flex flex-col  gap-2 font-semibold w-full md:w-[32%]">
       <label htmlFor={id}>{title}</label>
       <select
         className="py-1 px-2 bg-gray-300 text-gray-900 outline-0 rounded text-sm"

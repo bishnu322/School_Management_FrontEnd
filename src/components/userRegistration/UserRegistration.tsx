@@ -23,96 +23,93 @@ const UserRegistration = () => {
 
   const onSubmit = (data: any) => console.log(data);
 
-  console.log(watch);
+  // console.log(watch);
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex px-5 py-3 gap-3 justify-between flex-wrap">
-          <DropDown
-            dropdownOptions={roleDropdown}
-            title="Role"
-            id="role"
-            onChange={OnChangeStateOfRole}
-            // {...register(roleState)}
-            // register={register}
-          />
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex px-5 py-3 gap-3 justify-between flex-wrap"
+    >
+      <DropDown
+        dropdownOptions={roleDropdown}
+        title="Role"
+        id="role"
+        onChange={OnChangeStateOfRole}
+        // {...register(roleState)}
+        // register={register}
+      />
 
-          <Input
-            id="firstName"
-            type="text"
-            placeholder="First Name"
-            label="First Name"
-            register={register}
-          />
+      <Input
+        id="firstName"
+        type="text"
+        placeholder="First Name"
+        label="First Name"
+        register={register}
+      />
 
-          <Input
-            id="lastName"
-            type="text"
-            placeholder="Last Name"
-            label="Last Name"
-            register={register}
-          />
-          <Input
-            id="email"
-            type="email"
-            placeholder="example@gmail.com"
-            label="Email"
-            register={register}
-          />
-          <Input
-            id="phoneNumber"
-            type="number"
-            placeholder="0000000000"
-            label="Phone Number"
-            register={register}
-          />
-          <Input
-            id="dateOfBirth"
-            type="date"
-            placeholder="dd-mm-yyyy"
-            label="Date of Birth"
-            register={register}
-          />
+      <Input
+        id="lastName"
+        type="text"
+        placeholder="Last Name"
+        label="Last Name"
+        register={register}
+      />
+      <Input
+        id="email"
+        type="email"
+        placeholder="example@gmail.com"
+        label="Email"
+        register={register}
+      />
+      <Input
+        id="phoneNumber"
+        type="number"
+        placeholder="0000000000"
+        label="Phone Number"
+        register={register}
+      />
+      <Input
+        id="dateOfBirth"
+        type="date"
+        placeholder="dd-mm-yyyy"
+        label="Date of Birth"
+        register={register}
+      />
 
-          <Input
-            id="address"
-            type="text"
-            placeholder="Address"
-            label="Address"
-            register={register}
-          />
+      <Input
+        id="address"
+        type="text"
+        placeholder="Address"
+        label="Address"
+        register={register}
+      />
 
-          <Input
-            id="image"
-            type="file"
-            placeholder="choose file"
-            label="Photo"
-            register={register}
-          />
+      <Input
+        id="image"
+        type="file"
+        placeholder="choose file"
+        label="Photo"
+        register={register}
+      />
 
-          <DropDown
-            onChange={() => {}}
-            dropdownOptions={genderOption}
-            title="Gender"
-            id="gender"
-            // register={register}
-          />
+      <DropDown
+        onChange={() => {}}
+        dropdownOptions={genderOption}
+        title="Gender"
+        id="gender"
+        // register={register}
+      />
 
-          {roleState === "STUDENT" ? (
-            <StudentData register={register} />
-          ) : (
-            <StaffData register={register} />
-          )}
+      {roleState === "STUDENT" ? (
+        <StudentData register={register} />
+      ) : (
+        <StaffData register={register} />
+      )}
 
-          <div className="flex justify-center items-center mt-6">
-            <button className=" flex px-23 py-2 text-md rounded cursor-pointer bg-violet-600 font-bold transition-all duration-500 hover:bg-green-500 hover:text-green-900 ">
-              Submit
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+      <button className="p-2 text-md rounded cursor-pointer bg-violet-600 font-bold transition-all duration-500 hover:bg-green-500 hover:text-green-900 mt-4 w-full md:w-[32%]">
+        Submit
+      </button>
+    </form>
   );
 };
 
