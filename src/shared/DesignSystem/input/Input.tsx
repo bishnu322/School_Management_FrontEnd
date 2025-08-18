@@ -17,7 +17,7 @@ const Input = ({ id, type, placeholder, label, register }: IInput) => {
           type={type}
           id={id}
           placeholder={placeholder}
-          className="py-2 px-3 bg-gray-300 text-gray-900 outline-0 rounded"
+          className="py-1 px-2 bg-gray-300 text-gray-900 outline-0 rounded text-sm"
           {...register(id)}
         />
       </div>
