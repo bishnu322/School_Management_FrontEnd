@@ -14,21 +14,23 @@ import {
 
 const UserRegistration = () => {
   const [roleState, setRoleState] = useState("");
+  const [userData, setUserData] = useState({});
 
   const OnChangeStateOfRole = (e: string) => {
     setRoleState(e);
   };
 
-  const { register, handleSubmit, watch } = useForm();
+  const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: any) => setUserData({ ...data, role: roleState });
+  // console.log(userData);
 
   // console.log(watch);
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex px-5 py-3 gap-3 justify-between flex-wrap"
+      className="flex px-5 py-3 gap-3 justify-between flex-wrap h-full"
     >
       <DropDown
         dropdownOptions={roleDropdown}

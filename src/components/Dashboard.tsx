@@ -33,7 +33,7 @@ const adminDashboardConfig = {
 
 const Dashboard = () => {
   return (
-    <div className="flex gap-3 ">
+    <div className="flex gap-3 h-full ">
       <div>
         <SideNav />
       </div>
