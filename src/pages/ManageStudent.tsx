@@ -1,4 +1,4 @@
-import UserRegistration from "../components/UserRegistration";
+import UserRegistration from "../components/userRegistration/UserRegistration";
 
 const ManageStudent = () => {
   return (

@@ -1,11 +1,16 @@
 import { useState } from "react";
-import Input from "../shared/DesignSystem/input/Input";
-import DropDown from "./DropDown";
+import Input from "../../shared/DesignSystem/input/Input";
+import DropDown from "../DropDown";
 import {
   useForm,
   type FieldValues,
   type UseFormRegister,
 } from "react-hook-form";
+import {
+  classesOption,
+  genderOption,
+  roleDropdown,
+} from "../../types/global.type";
 
 const UserRegistration = () => {
   const [roleState, setRoleState] = useState("");
@@ -113,30 +118,6 @@ const UserRegistration = () => {
 
 export default UserRegistration;
 
-const StudentData = ({
-  register,
-}: {
-  register: UseFormRegister<FieldValues>;
-}) => {
-  return (
-    <>
-      <Input
-        id="rollNumber"
-        type="text"
-        placeholder="Roll number"
-        label="Roll Number"
-        register={register}
-      />
-      <DropDown
-        onChange={() => {}}
-        dropdownOptions={classesOption}
-        title="Class"
-        id="Class"
-      />
-    </>
-  );
-};
-
 const StaffData = ({
   register,
 }: {
@@ -205,66 +186,26 @@ const StaffData = ({
   );
 };
 
-// ! for the role option defined
-
-type Role = "ADMIN" | "STUDENT" | "TEACHER" | "ACCOUNTANT";
-
-interface IRoleDropdown {
-  title: Role;
-}
-
-export const roleDropdown: IRoleDropdown[] = [
-  // { title: "SUPER_ADMIN" },
-  { title: "ADMIN" },
-  { title: "STUDENT" },
-  { title: "TEACHER" },
-  { title: "ACCOUNTANT" },
-];
-
-// ! for gender
-type Gender = "Male" | "Female" | "Other";
-
-interface IGenderDropdown {
-  title: Gender;
-}
-
-export const genderOption: IGenderDropdown[] = [
-  { title: "Male" },
-  { title: "Female" },
-  { title: "Other" },
-];
-
-// ! for classes
-
-type DropDownClass =
-  | "Nursery"
-  | "K.G"
-  | "One"
-  | "Two"
-  | "Three"
-  | "Four"
-  | "Five"
-  | "Six"
-  | "Seven"
-  | "Eight"
-  | "Nine"
-  | "Ten";
-
-interface IClassDropDown {
-  title: DropDownClass;
-}
-
-export const classesOption: IClassDropDown[] = [
-  { title: "Nursery" },
-  { title: "K.G" },
-  { title: "One" },
-  { title: "Two" },
-  { title: "Three" },
-  { title: "Four" },
-  { title: "Five" },
-  { title: "Six" },
-  { title: "Seven" },
-  { title: "Eight" },
-  { title: "Nine" },
-  { title: "Ten" },
-];
+const StudentData = ({
+  register,
+}: {
+  register: UseFormRegister<FieldValues>;
+}) => {
+  return (
+    <>
+      <Input
+        id="rollNumber"
+        type="text"
+        placeholder="Roll number"
+        label="Roll Number"
+        register={register}
+      />
+      <DropDown
+        onChange={() => {}}
+        dropdownOptions={classesOption}
+        title="Class"
+        id="Class"
+      />
+    </>
+  );
+};

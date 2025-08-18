@@ -1,11 +1,11 @@
-import type { UseFormRegister } from "react-hook-form";
+import type { FieldValues, UseFormRegister } from "react-hook-form";
 
 interface IInput {
   id: string;
   type: string;
   placeholder?: string;
   label: string;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<FieldValues>;
 }
 
 const Input = ({ id, type, placeholder, label, register }: IInput) => {
