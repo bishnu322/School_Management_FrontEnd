@@ -1,5 +1,12 @@
+import SideNav from "../components/SideNav";
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div className="flex gap-3">
+      <SideNav />
+      <h1>home page</h1>
+    </div>
+  );
 };
 
 export default Home;

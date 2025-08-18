@@ -5,51 +5,64 @@ import {
   RiGraduationCapFill,
   RiMoneyRupeeCircleFill,
   RiPresentationFill,
+  RiUser3Fill,
 } from "@remixicon/react";
+import { NavLink } from "react-router";
 
 const sideNavConfig = {
   navLinks: [
     {
       Icon: RiDashboard3Line,
       link: "Dashboard",
+      to: "/dashboard",
+    },
+    {
+      Icon: RiUser3Fill,
+      link: "Manage User",
+      to: "/admin",
     },
     {
       Icon: RiGraduationCapFill,
-      link: "Manage Student",
+      link: "Student",
+      to: "/admin",
     },
 
     {
       Icon: RiPresentationFill,
       link: "Manage Staffs",
+      to: "/admin",
     },
     {
       Icon: RiMoneyRupeeCircleFill,
       link: "Manage payment",
+      to: "/admin",
     },
     {
       Icon: RiCalendar2Fill,
       link: "Attendance ",
+      to: "/admin",
     },
   ],
 };
 
 const SideNav = () => {
   return (
-    <div className="w-[20vw] bg-[#0A2335] h-full py-5 text-gray-200">
+    <div className="w-[20vw] bg-[#0A2335] h-full min-h-[100vh] py-5 text-gray-200">
       <div className="text-2xl font-semibold flex gap-2 items-center px-5">
         <RiDashboardHorizontalFill />
         DashBoard
       </div>
 
       <ul className="mt-4">
-        {sideNavConfig.navLinks.map(({ Icon, link }) => (
-          <li
+        {sideNavConfig.navLinks.map(({ Icon, link, to }) => (
+          <NavLink
             key={link}
-            className="py-3 px-5 flex gap-2 font-semibold hover:bg-[#4d5c67] hover:text-gray-300 "
+            to={to}
+            className={`flex gap-2 py-3 px-5  font-semibold hover:bg-[#4d5c67] hover:text-gray-300`}
           >
             <Icon />
             <p>{link}</p>
-          </li>
+          </NavLink>
         ))}
       </ul>
     </div>

@@ -1,5 +1,6 @@
 import AttendanceGraph from "../components/AttendanceGraph";
 import { RiGraduationCapFill } from "@remixicon/react";
+import SideNav from "./SideNav";
 
 const adminDashboardConfig = {
   calculationCard: [
@@ -8,7 +9,7 @@ const adminDashboardConfig = {
       data: 64,
       subTitle: "Active enrolment",
       Icon: RiGraduationCapFill,
-      bg: "indigo-600",
+      // bg: "indigo-600",
       hoverBg: "green-500",
     },
     {
@@ -16,7 +17,7 @@ const adminDashboardConfig = {
       data: 55,
       subTitle: "Active enrolment",
       Icon: RiGraduationCapFill,
-      bg: "orange-700",
+      // bg: "orange-700",
       hoverBg: "green-500",
     },
     {
@@ -24,7 +25,7 @@ const adminDashboardConfig = {
       data: 9,
       subTitle: "Active enrolment",
       Icon: RiGraduationCapFill,
-      bg: "violet-700",
+      // bg: "violet-700",
       hoverBg: "green-500",
     },
   ],
@@ -32,7 +33,10 @@ const adminDashboardConfig = {
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className="flex gap-3 ">
+      <div>
+        <SideNav />
+      </div>
       <div className="mt-3 p-5 w-[80vw]">
         <div>
           <h1 className="text-2xl font-bold text-green-600">Admin Dashboard</h1>
@@ -43,9 +47,9 @@ const Dashboard = () => {
 
         <div className="mt-10 flex justify-between">
           {adminDashboardConfig.calculationCard.map(
-            ({ title, data, subTitle, Icon, bg, hoverBg }) => (
+            ({ title, data, subTitle, Icon, hoverBg }) => (
               <div
-                className={` bg-${bg} rounded text-gray-100 text-sm px-5 py-4 w-74 flex items-center justify-between transition duration-500 ease-in-out hover:bg-${hoverBg} hover:text-green-900 `}
+                className={`bg-[#4957EF] rounded text-gray-100 text-sm px-5 py-4 w-74 flex items-center justify-between transition duration-500 ease-in-out hover:bg-${hoverBg} hover:text-green-900 `}
               >
                 <div className="px-2 font-bold ">
                   <p>{title}</p>
