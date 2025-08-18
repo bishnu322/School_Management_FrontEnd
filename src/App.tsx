@@ -16,12 +16,6 @@ const App = () => {
           <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
       </BrowserRouter>
-      {/* <
-      <SideNav />
-      <AdminDashboard /> */}
-      {/* <Dashboard /> */}
-      {/* <Home /> */}
-      {/* <Login /> */}
     </div>
   );
 };
