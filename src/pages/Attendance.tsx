@@ -52,7 +52,7 @@ const Attendance = () => {
       <div>
         <SideNav />
       </div>
-      <div className="flex flex-col gap-5 p-5 m-5 bg-[#1E2938] w-full rounded">
+      <div className="flex flex-col gap-5 p-5 m-5  bg-[#1E2938] w-full rounded">
         <SearchField />
 
         <AttendanceDetail />
