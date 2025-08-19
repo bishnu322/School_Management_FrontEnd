@@ -20,10 +20,33 @@ const valueFormatter = (value: number | null | undefined) =>
 
 const AttendanceGraph = () => {
   return (
-    <div className=" mt-10 text-white bg-indigo-300 rounded">
+    <div className=" bg-[#364152] rounded ">
       <BarChart
         dataset={dataset}
-        xAxis={[{ dataKey: "month" }]}
+        // xAxis={[{ dataKey: "month" }]}
+        xAxis={[
+          {
+            dataKey: "month",
+            label: "Month",
+            sx: {
+              ".MuiChartsAxis-tickLabel": { fill: "#fff" }, // tick labels white
+              ".MuiChartsAxis-line": { stroke: "#fff" }, // axis line white
+              ".MuiChartsAxis-tick": { stroke: "#fff" }, // tick marks white
+              ".MuiChartsAxis-label": { fill: "#fff" }, // axis label white
+            },
+          },
+        ]}
+        yAxis={[
+          {
+            label: "Students",
+            sx: {
+              ".MuiChartsAxis-tickLabel": { fill: "#fff" },
+              ".MuiChartsAxis-line": { stroke: "#fff" },
+              ".MuiChartsAxis-tick": { stroke: "#fff" },
+              ".MuiChartsAxis-label": { fill: "#fff" },
+            },
+          },
+        ]}
         series={[
           { dataKey: "TotalStudent", label: "Total Student", valueFormatter },
           { dataKey: "Present", label: "Present", valueFormatter },
@@ -32,6 +55,14 @@ const AttendanceGraph = () => {
         ]}
         // width={600}
         height={400}
+        sx={{
+          "& .MuiChartsLegend-root": {
+            color: "#fff", // legend text color
+          },
+          "& .MuiChartsLegend-series": {
+            fill: "#fff", // legend series labels white
+          },
+        }}
       />
     </div>
   );
