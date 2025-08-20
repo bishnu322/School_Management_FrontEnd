@@ -8,7 +8,6 @@ import {
   RiPresentationFill,
   RiUser3Fill,
 } from "@remixicon/react";
-import { useState } from "react";
 import { NavLink } from "react-router";
 
 const sideNavConfig = {

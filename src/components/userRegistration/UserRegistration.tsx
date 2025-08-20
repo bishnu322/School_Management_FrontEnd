@@ -26,6 +26,7 @@ const UserRegistration = () => {
   // console.log(userData);
 
   // console.log(watch);
+  console.log(userData);
 
   return (
     <form
