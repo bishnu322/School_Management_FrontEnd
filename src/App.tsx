@@ -13,12 +13,12 @@ const App = () => {
     <div className="h-full bg-[#0D1C27]">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Signin />} />
           <Route path="/student" element={<Students />} />
           <Route path="/payment" element={<ManagePayment />} />
           <Route path="/attendance" element={<Attendance />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
       </BrowserRouter>
