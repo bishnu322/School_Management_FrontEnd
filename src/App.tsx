@@ -2,7 +2,7 @@ import "./App.css";
 import Dashboard from "./components/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
+import Signin from "./pages/Signin";
 import { BrowserRouter, Routes, Route } from "react-router";
 import Students from "./pages/Students";
 import ManagePayment from "./pages/ManagePayment";
@@ -14,7 +14,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Signin />} />
           <Route path="/student" element={<Students />} />
           <Route path="/payment" element={<ManagePayment />} />
           <Route path="/attendance" element={<Attendance />} />
