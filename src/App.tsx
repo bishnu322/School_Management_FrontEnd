@@ -10,7 +10,7 @@ import Attendance from "./pages/Attendance";
 
 const App = () => {
   return (
-    <div className="h-full bg-[#0D1C27]">
+    <div className="h-full bg-[#1E2938]">
       <BrowserRouter>
         <Routes>
           <Route path="/home" element={<Home />} />

@@ -41,9 +41,11 @@ const DropDown: React.FC<DropDownProps> = ({
 }) => {
   return (
     <div className="flex flex-col  gap-2 font-semibold w-full md:w-[32%]">
-      <label htmlFor={id}>{title}</label>
+      <label htmlFor={id} className="text-gray-300">
+        {title}
+      </label>
       <select
-        className="py-1 px-2 bg-gray-300 text-gray-900 outline-0 rounded text-sm"
+        className="py-3 px-2 bg-gray-300 text-gray-900 outline-0 rounded text-sm"
         // name={id}
         id={id}
         onChange={(e) => onChange(e.target.value)}

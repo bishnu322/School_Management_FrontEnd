@@ -109,7 +109,7 @@ const UserRegistration = () => {
         <StaffData register={register} />
       )}
 
-      <button className="p-2 text-md rounded cursor-pointer bg-violet-600 font-bold transition-all duration-500 hover:bg-green-500 hover:text-green-900 mt-4 w-full md:w-[32%]">
+      <button className="text-md rounded cursor-pointer bg-indigo-600 text-gray-300 font-bold transition-all duration-500 hover:bg-[#1E2938] mt-8 w-full md:w-[32%]">
         Submit
       </button>
     </form>

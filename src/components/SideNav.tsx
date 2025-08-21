@@ -15,7 +15,7 @@ const sideNavConfig = {
     {
       Icon: RiDashboard3Line,
       link: "Dashboard",
-      to: "/dashboard",
+      to: "/",
     },
     {
       Icon: RiUser3Fill,
