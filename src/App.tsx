@@ -1,5 +1,5 @@
 import "./App.css";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import Home from "./pages/Home";
 import Signin from "./pages/Signin";
