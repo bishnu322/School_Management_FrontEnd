@@ -1,6 +1,10 @@
 import AttendanceGraph from "../components/AttendanceGraph";
-import { RiGraduationCapFill } from "@remixicon/react";
-import SideNav from "./SideNav";
+import {
+  RiGraduationCapFill,
+  RiMoneyRupeeCircleFill,
+  RiPresentationFill,
+} from "@remixicon/react";
+import SideNav from "../components/SideNav";
 
 const adminDashboardConfig = {
   calculationCard: [
@@ -13,18 +17,18 @@ const adminDashboardConfig = {
       hoverBg: "green-500",
     },
     {
-      title: "Present Student",
+      title: "Total Staff",
       data: 55,
       subTitle: "Active enrolment",
-      Icon: RiGraduationCapFill,
+      Icon: RiPresentationFill,
       // bg: "orange-700",
       hoverBg: "green-500",
     },
     {
-      title: "Absent Student",
-      data: 9,
+      title: "Total Collection",
+      data: "200,000",
       subTitle: "Active enrolment",
-      Icon: RiGraduationCapFill,
+      Icon: RiMoneyRupeeCircleFill,
       // bg: "violet-700",
       hoverBg: "green-500",
     },
@@ -54,7 +58,10 @@ const Dashboard = () => {
               >
                 <div className="px-2 font-bold ">
                   <p>{title}</p>
-                  <h1 className="text-2xl ">{data}</h1>
+                  <h1 className="text-2xl ">
+                    {" "}
+                    <span></span> {data}
+                  </h1>
                   <div className="text-sm flex ">
                     <div>{/* <RiArrowDropUpFill /> */}</div>
                     <p>{subTitle}</p>

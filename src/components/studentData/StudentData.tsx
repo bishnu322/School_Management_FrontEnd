@@ -1,9 +1,14 @@
+import Avatar from "@mui/material/Avatar";
+
 const StudentData = () => {
   return (
     <div className="gap-5 p-5 bg-[#364152] rounded flex justify-between items-center ">
-      <div>
-        <span className="text-gray-300 font-semibold text-xl">Welcome, </span>
-        <span className="text-indigo-300 font-semibold">Abhishek Shrestha</span>
+      <div className="flex gap-5 items-center">
+        <Avatar />
+        <div>
+          <p className="text-gray-300 font-semibold text-xl">Welcome, </p>
+          <p className="text-indigo-300 font-semibold">Abhishek Shrestha</p>
+        </div>
       </div>
 
       <div>

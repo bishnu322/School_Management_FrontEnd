@@ -1,3 +1,4 @@
+import Card from "../components/card/Card";
 import SideNav from "../components/SideNav";
 import StudentData from "../components/studentData/StudentData";
 
@@ -9,6 +10,8 @@ const Students = () => {
       </div>
       <div className="flex flex-col gap-5 m-5 p-5  bg-[#1E2938] w-full rounded">
         <StudentData />
+
+        <Card />
       </div>
     </div>
   );
