@@ -59,8 +59,7 @@ const Dashboard = () => {
                 <div className="px-2 font-bold ">
                   <p>{title}</p>
                   <h1 className="text-2xl ">
-                    {" "}
-                    <span></span> {data}
+                    <span>{data}</span>
                   </h1>
                   <div className="text-sm flex ">
                     <div>{/* <RiArrowDropUpFill /> */}</div>
