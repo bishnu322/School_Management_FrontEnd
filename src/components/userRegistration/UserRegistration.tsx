@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Input from "../../shared/DesignSystem/input/Input";
-import DropDown from "../DropDown";
+import DropDown from "../../shared/DesignSystem/dropdown/DropDown";
 import {
   useForm,
   type FieldValues,

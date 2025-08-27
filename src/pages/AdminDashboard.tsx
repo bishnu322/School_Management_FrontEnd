@@ -1,5 +1,5 @@
 // import Dashboard from "../components/Dashboard";
-import SideNav from "../components/SideNav";
+import SideNav from "../components/sideNav/SideNav";
 import ManageStudent from "./ManageUser";
 
 const AdminDashboard = () => {

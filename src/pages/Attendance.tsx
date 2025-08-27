@@ -1,7 +1,7 @@
 import AttendanceDetail from "../components/attendance/AttendanceDetail";
 import SearchField from "../components/attendance/SearchField";
 import MyTable from "../components/attendance/table/Table";
-import SideNav from "../components/SideNav";
+import SideNav from "../components/sideNav/SideNav";
 
 const people = [
   {

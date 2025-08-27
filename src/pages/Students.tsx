@@ -1,5 +1,5 @@
 import Card from "../components/card/Card";
-import SideNav from "../components/SideNav";
+import SideNav from "../components/sideNav/SideNav";
 import StudentData from "../components/studentData/StudentData";
 
 const Students = () => {

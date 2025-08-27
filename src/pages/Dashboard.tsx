@@ -1,10 +1,10 @@
-import AttendanceGraph from "../components/AttendanceGraph";
+import AttendanceGraph from "../components/attendenceGraph/AttendanceGraph";
 import {
   RiGraduationCapFill,
   RiMoneyRupeeCircleFill,
   RiPresentationFill,
 } from "@remixicon/react";
-import SideNav from "../components/SideNav";
+import SideNav from "../components/sideNav/SideNav";
 
 const adminDashboardConfig = {
   calculationCard: [

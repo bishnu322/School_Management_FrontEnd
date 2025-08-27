@@ -1,25 +1,3 @@
-// const roleOptionsConfig = {
-//   roleOption: [
-//     {
-//       title: "SUPER_ADMIN",
-//     },
-//     {
-//       title: "ADMIN",
-//     },
-//     {
-//       title: "STUDENT",
-//     },
-//     {
-//       title: "TEACHER",
-//     },
-//     {
-//       title: "ACCOUNTANT",
-//     },
-//   ],
-// };
-
-// import type { UseFormRegister } from "react-hook-form";
-
 interface DropDownOption {
   title: string;
 }
@@ -29,7 +7,6 @@ interface DropDownProps {
   title: string;
   id: string;
   onChange: (value: string) => void;
-  // register: UseFormRegister<any>;
 }
 
 const DropDown: React.FC<DropDownProps> = ({
