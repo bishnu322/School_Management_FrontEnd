@@ -1,6 +1,10 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { signInApi } from "../api/auth.api";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 interface ILoginData {
   email: string;
@@ -26,8 +30,25 @@ const Signin = () => {
     mode: "all",
   });
 
+  const navigate = useNavigate();
+
+  const { mutate } = useMutation({
+    mutationFn: signInApi,
+    onSuccess: (response: any) => {
+      console.log(response);
+      localStorage.setItem("user", JSON.stringify(response.data));
+      navigate("/");
+      toast.success(response?.message ?? "login success");
+    },
+    onError: (error: any) => {
+      console.log(error);
+      toast.error(error?.message ?? "login failed");
+    },
+    mutationKey: ["login_mutation"],
+  });
+
   const onSubmit = (data: ILoginData) => {
-    console.log(data);
+    mutate(data);
   };
 
   // console.log(watch);
