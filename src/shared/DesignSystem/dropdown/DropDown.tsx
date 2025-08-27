@@ -7,6 +7,7 @@ interface DropDownProps {
   title: string;
   id: string;
   onChange: (value: string) => void;
+  register?: React.ReactNode;
 }
 
 const DropDown: React.FC<DropDownProps> = ({
@@ -14,7 +15,6 @@ const DropDown: React.FC<DropDownProps> = ({
   title,
   id,
   onChange,
-  // register,
 }) => {
   return (
     <div className="flex flex-col  gap-2 font-semibold w-full md:w-[32%]">

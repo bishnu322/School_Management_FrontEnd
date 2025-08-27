@@ -68,6 +68,7 @@ const Signin = () => {
             <label htmlFor="email" className="text-lg font-semibold">
               Email
             </label>
+
             <input
               type="text"
               // name="email"

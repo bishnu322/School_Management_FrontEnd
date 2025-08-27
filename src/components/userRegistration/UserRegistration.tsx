@@ -23,9 +23,7 @@ const UserRegistration = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data: any) => setUserData({ ...data, role: roleState });
-  // console.log(userData);
 
-  // console.log(watch);
   console.log(userData);
 
   return (
@@ -38,8 +36,6 @@ const UserRegistration = () => {
         title="Role"
         id="role"
         onChange={OnChangeStateOfRole}
-        // {...register(roleState)}
-        // register={register}
       />
 
       <Input
