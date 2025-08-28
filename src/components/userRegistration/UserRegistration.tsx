@@ -31,73 +31,77 @@ const UserRegistration = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="flex px-5 py-3 gap-3 justify-between flex-wrap h-full"
     >
-      <DropDown
-        dropdownOptions={roleDropdown}
-        title="Role"
-        id="role"
-        onChange={OnChangeStateOfRole}
-      />
+      <div className="w-full md:w-[32%]">
+        <DropDown
+          dropdownOptions={roleDropdown}
+          title="Role"
+          id="role"
+          onChange={OnChangeStateOfRole}
+        />
+      </div>
 
-      <Input
-        id="firstName"
-        type="text"
-        placeholder="First Name"
-        label="First Name"
-        register={register}
-      />
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="firstName"
+          type="text"
+          placeholder="First Name"
+          label="First Name"
+        />
+      </div>
 
-      <Input
-        id="lastName"
-        type="text"
-        placeholder="Last Name"
-        label="Last Name"
-        register={register}
-      />
-      <Input
-        id="email"
-        type="email"
-        placeholder="example@gmail.com"
-        label="Email"
-        register={register}
-      />
-      <Input
-        id="phoneNumber"
-        type="number"
-        placeholder="0000000000"
-        label="Phone Number"
-        register={register}
-      />
-      <Input
-        id="dateOfBirth"
-        type="date"
-        placeholder="dd-mm-yyyy"
-        label="Date of Birth"
-        register={register}
-      />
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="lastName"
+          type="text"
+          placeholder="Last Name"
+          label="Last Name"
+        />
+      </div>
 
-      <Input
-        id="address"
-        type="text"
-        placeholder="Address"
-        label="Address"
-        register={register}
-      />
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="email"
+          type="email"
+          placeholder="example@gmail.com"
+          label="Email"
+        />
+      </div>
 
-      <Input
-        id="image"
-        type="file"
-        placeholder="choose file"
-        label="Photo"
-        register={register}
-      />
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="phoneNumber"
+          type="number"
+          placeholder="0000000000"
+          label="Phone Number"
+        />
+      </div>
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="dateOfBirth"
+          type="date"
+          placeholder="dd-mm-yyyy"
+          label="Date of Birth"
+        />
+      </div>
 
-      <DropDown
-        onChange={() => {}}
-        dropdownOptions={genderOption}
-        title="Gender"
-        id="gender"
-        // register={register}
-      />
+      <div className="w-full md:w-[32%]">
+        <Input id="address" type="text" placeholder="Address" label="Address" />
+      </div>
+
+      <div className="w-full md:w-[32%]">
+        <Input id="image" type="file" placeholder="choose file" label="Photo" />
+      </div>
+
+      <div className="w-full md:w-[32%]">
+        <DropDown
+          onChange={() => {}}
+          dropdownOptions={genderOption}
+          title="Gender"
+          id="gender"
+
+          // register={register}
+        />
+      </div>
 
       {roleState === "STUDENT" ? (
         <StudentData register={register} />
@@ -121,63 +125,83 @@ const StaffData = ({
 }) => {
   return (
     <>
-      <Input
-        id="empId"
-        label="Employee Id"
-        type="text"
-        placeholder="Employee Id"
-        register={register}
-      />
-      <Input
-        id="department"
-        type="text"
-        placeholder="Department"
-        label="Department"
-        register={register}
-      />
-      <Input
-        id="salary"
-        type="text"
-        placeholder="Salary"
-        label="Salary"
-        register={register}
-      />
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="empId"
+          label="Employee Id"
+          type="text"
+          placeholder="Employee Id"
+          register={register}
+        />
+      </div>
 
-      <Input
-        id="qualification"
-        type="text"
-        placeholder="Qualification"
-        label="Qualification"
-        register={register}
-      />
-      <Input
-        id="experience"
-        type="text"
-        placeholder="Experience"
-        label="Year of Experience"
-        register={register}
-      />
-      <Input
-        id="joinDate"
-        type="date"
-        placeholder="Joining Date"
-        label="Joining Date"
-        register={register}
-      />
-      <Input
-        id="classTeacher"
-        type="text"
-        placeholder="Class Teacher"
-        label="Class Teacher"
-        register={register}
-      />
-      <Input
-        id="staffData"
-        type="text"
-        placeholder="Staff description"
-        label="Staff description"
-        register={register}
-      />
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="department"
+          type="text"
+          placeholder="Department"
+          label="Department"
+          register={register}
+        />
+      </div>
+
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="salary"
+          type="text"
+          placeholder="Salary"
+          label="Salary"
+          register={register}
+        />
+      </div>
+
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="qualification"
+          type="text"
+          placeholder="Qualification"
+          label="Qualification"
+          register={register}
+        />
+      </div>
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="experience"
+          type="text"
+          placeholder="Experience"
+          label="Year of Experience"
+          register={register}
+        />
+      </div>
+
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="joinDate"
+          type="date"
+          placeholder="Joining Date"
+          label="Joining Date"
+          register={register}
+        />
+      </div>
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="classTeacher"
+          type="text"
+          placeholder="Class Teacher"
+          label="Class Teacher"
+          register={register}
+        />
+      </div>
+
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="staffData"
+          type="text"
+          placeholder="Staff description"
+          label="Staff description"
+          register={register}
+        />
+      </div>
     </>
   );
 };
@@ -189,19 +213,23 @@ const StudentData = ({
 }) => {
   return (
     <>
-      <Input
-        id="rollNumber"
-        type="text"
-        placeholder="Roll number"
-        label="Roll Number"
-        register={register}
-      />
-      <DropDown
-        onChange={() => {}}
-        dropdownOptions={classesOption}
-        title="Class"
-        id="Class"
-      />
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="rollNumber"
+          type="text"
+          placeholder="Roll number"
+          label="Roll Number"
+          register={register}
+        />
+      </div>
+      <div className="w-full md:w-[32%]">
+        <DropDown
+          onChange={() => {}}
+          dropdownOptions={classesOption}
+          title="Class"
+          id="Class"
+        />
+      </div>
     </>
   );
 };

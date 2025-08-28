@@ -1,3 +1,5 @@
+import { cn } from "../../utils/cn";
+
 interface DropDownOption {
   title: string;
 }
@@ -8,6 +10,7 @@ interface DropDownProps {
   id: string;
   onChange: (value: string) => void;
   register?: React.ReactNode;
+  className?: string;
 }
 
 const DropDown: React.FC<DropDownProps> = ({
@@ -15,14 +18,18 @@ const DropDown: React.FC<DropDownProps> = ({
   title,
   id,
   onChange,
+  className,
 }) => {
   return (
-    <div className="flex flex-col  gap-2 font-semibold w-full md:w-[32%]">
+    <div className="flex flex-col gap-2 font-semibold">
       <label htmlFor={id} className="text-gray-300">
         {title}
       </label>
       <select
-        className="py-3 px-2 bg-gray-300 text-gray-900 outline-0 rounded text-sm"
+        className={cn(
+          "py-3 px-2 bg-gray-300 text-gray-900 outline-0 rounded text-sm w-full",
+          className
+        )}
         // name={id}
         id={id}
         onChange={(e) => onChange(e.target.value)}

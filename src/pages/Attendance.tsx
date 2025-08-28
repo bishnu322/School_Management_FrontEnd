@@ -49,7 +49,7 @@ const people = [
 ];
 
 const Attendance = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="flex min-h-screen bg-[#1E2938]">
@@ -59,32 +59,28 @@ const Attendance = () => {
       </div>
 
       {/* Sidebar (mobile drawer) */}
-      <div
+      {/* <div
         className={`fixed top-0 left-0 h-full w-64 bg-[#0A2335] z-50 transform transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } sm:hidden`}
       >
         <SideNav />
-      </div>
+      </div> */}
 
       {/* Overlay when sidebar is open */}
-      {isOpen && (
+      {/* {isOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-40 sm:hidden"
           onClick={() => setIsOpen(false)}
         />
-      )}
+      )} */}
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col gap-5 p-5 sm:m-5 sm:ml-0 rounded">
-        {/* Mobile top bar */}
+
+      {/* Mobile top bar */}
+      <div className="flex flex-col gap-5 m-5 p-5  bg-[#1E2938] w-full rounded">
         <div className="sm:hidden flex items-center justify-between h-14 mb-2">
           <h1 className="text-lg font-bold text-white">Attendance</h1>
-          <RiMenuFill
-            size={28}
-            className="text-white cursor-pointer"
-            onClick={() => setIsOpen(true)}
-          />
         </div>
 
         {/* Page content */}

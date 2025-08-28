@@ -5,6 +5,7 @@ import { signInApi } from "../api/auth.api";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+import Input from "../shared/DesignSystem/input/Input";
 
 interface ILoginData {
   email: string;
@@ -16,12 +17,17 @@ const signInSchema = yup.object({
   password: yup.string().required("password is required"),
 });
 
+interface ISignInFormValues {
+  email: string;
+  password: string;
+}
+
 const Signin = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<ISignInFormValues>({
     defaultValues: {
       email: "",
       password: "",
@@ -69,7 +75,14 @@ const Signin = () => {
               Email
             </label>
 
-            <input
+            <Input<ISignInFormValues>
+              type="email"
+              placeholder="email"
+              id="email"
+              register={register}
+            />
+
+            {/* <input
               type="text"
               // name="email"
               id="email"
@@ -84,31 +97,34 @@ const Signin = () => {
             ) : (
               <p className="text-transparent text-sm"> </p>
             )}
-          </div>
+          </div> */}
 
-          {/* password input */}
-          <div className="flex flex-col">
-            <label htmlFor="password" className="text-lg font-semibold">
-              Password
-            </label>
-            <input
-              type="password"
-              // name="password"
-              id="password"
-              placeholder="password"
-              {...register("password")}
-              className="px-2 py-2 outline-none border-2 border-indigo-400 rounded focus:border-indigo-800"
-            />
-            {errors.password ? (
-              <p className="text-red-500 text-sm">{errors.password.message}</p>
-            ) : (
-              <p className="text-transparent text-sm"> </p>
-            )}
-          </div>
+            {/* password input */}
+            <div className="flex flex-col">
+              <label htmlFor="password" className="text-lg font-semibold">
+                Password
+              </label>
+              <input
+                type="password"
+                // name="password"
+                id="password"
+                placeholder="password"
+                {...register("password")}
+                className="px-2 py-2 outline-none border-2 border-indigo-400 rounded focus:border-indigo-800"
+              />
+              {errors.password ? (
+                <p className="text-red-500 text-sm">
+                  {errors.password.message}
+                </p>
+              ) : (
+                <p className="text-transparent text-sm"> </p>
+              )}
+            </div>
 
-          <button className="w-full mt-2 py-2 bg-indigo-600 rounded cursor-pointer font-semibold text-md text-gray-300 hover:bg-indigo-800 transition-all duration-500">
-            Login
-          </button>
+            <button className="w-full mt-2 py-2 bg-indigo-600 rounded cursor-pointer font-semibold text-md text-gray-300 hover:bg-indigo-800 transition-all duration-500">
+              Login
+            </button>
+          </div>
         </form>
       </div>
     </div>
