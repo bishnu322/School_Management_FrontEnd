@@ -1,16 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../../shared/DesignSystem/input/Input";
 import DropDown from "../../shared/DesignSystem/dropdown/DropDown";
-import {
-  useForm,
-  type FieldValues,
-  type UseFormRegister,
-} from "react-hook-form";
-import {
-  classesOption,
-  genderOption,
-  roleDropdown,
-} from "../../types/global.type";
+import { useForm } from "react-hook-form";
+import { genderOption, roleDropdown } from "../../types/global.type";
+import { StudentData } from "./StudentData";
+import { StaffData } from "./StaffData";
 
 const UserRegistration = () => {
   const [roleState, setRoleState] = useState("");
@@ -20,7 +14,12 @@ const UserRegistration = () => {
     setRoleState(e);
   };
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch } = useForm();
+
+  const { role } = watch();
+  useEffect(() => {
+    OnChangeStateOfRole(role);
+  }, [role]);
 
   const onSubmit = (data: any) => setUserData({ ...data, role: roleState });
 
@@ -36,7 +35,7 @@ const UserRegistration = () => {
           dropdownOptions={roleDropdown}
           title="Role"
           id="role"
-          onChange={OnChangeStateOfRole}
+          register={register}
         />
       </div>
 
@@ -46,6 +45,7 @@ const UserRegistration = () => {
           type="text"
           placeholder="First Name"
           label="First Name"
+          register={register}
         />
       </div>
 
@@ -55,6 +55,7 @@ const UserRegistration = () => {
           type="text"
           placeholder="Last Name"
           label="Last Name"
+          register={register}
         />
       </div>
 
@@ -64,6 +65,7 @@ const UserRegistration = () => {
           type="email"
           placeholder="example@gmail.com"
           label="Email"
+          register={register}
         />
       </div>
 
@@ -73,6 +75,7 @@ const UserRegistration = () => {
           type="number"
           placeholder="0000000000"
           label="Phone Number"
+          register={register}
         />
       </div>
       <div className="w-full md:w-[32%]">
@@ -81,25 +84,36 @@ const UserRegistration = () => {
           type="date"
           placeholder="dd-mm-yyyy"
           label="Date of Birth"
+          register={register}
         />
       </div>
 
       <div className="w-full md:w-[32%]">
-        <Input id="address" type="text" placeholder="Address" label="Address" />
+        <Input
+          id="address"
+          type="text"
+          placeholder="Address"
+          label="Address"
+          register={register}
+        />
       </div>
 
       <div className="w-full md:w-[32%]">
-        <Input id="image" type="file" placeholder="choose file" label="Photo" />
+        <Input
+          id="image"
+          type="file"
+          placeholder="choose file"
+          label="Photo"
+          register={register}
+        />
       </div>
 
       <div className="w-full md:w-[32%]">
         <DropDown
-          onChange={() => {}}
-          dropdownOptions={genderOption}
-          title="Gender"
           id="gender"
-
-          // register={register}
+          title="Gender"
+          dropdownOptions={genderOption}
+          register={register}
         />
       </div>
 
@@ -117,119 +131,3 @@ const UserRegistration = () => {
 };
 
 export default UserRegistration;
-
-const StaffData = ({
-  register,
-}: {
-  register: UseFormRegister<FieldValues>;
-}) => {
-  return (
-    <>
-      <div className="w-full md:w-[32%]">
-        <Input
-          id="empId"
-          label="Employee Id"
-          type="text"
-          placeholder="Employee Id"
-          register={register}
-        />
-      </div>
-
-      <div className="w-full md:w-[32%]">
-        <Input
-          id="department"
-          type="text"
-          placeholder="Department"
-          label="Department"
-          register={register}
-        />
-      </div>
-
-      <div className="w-full md:w-[32%]">
-        <Input
-          id="salary"
-          type="text"
-          placeholder="Salary"
-          label="Salary"
-          register={register}
-        />
-      </div>
-
-      <div className="w-full md:w-[32%]">
-        <Input
-          id="qualification"
-          type="text"
-          placeholder="Qualification"
-          label="Qualification"
-          register={register}
-        />
-      </div>
-      <div className="w-full md:w-[32%]">
-        <Input
-          id="experience"
-          type="text"
-          placeholder="Experience"
-          label="Year of Experience"
-          register={register}
-        />
-      </div>
-
-      <div className="w-full md:w-[32%]">
-        <Input
-          id="joinDate"
-          type="date"
-          placeholder="Joining Date"
-          label="Joining Date"
-          register={register}
-        />
-      </div>
-      <div className="w-full md:w-[32%]">
-        <Input
-          id="classTeacher"
-          type="text"
-          placeholder="Class Teacher"
-          label="Class Teacher"
-          register={register}
-        />
-      </div>
-
-      <div className="w-full md:w-[32%]">
-        <Input
-          id="staffData"
-          type="text"
-          placeholder="Staff description"
-          label="Staff description"
-          register={register}
-        />
-      </div>
-    </>
-  );
-};
-
-const StudentData = ({
-  register,
-}: {
-  register: UseFormRegister<FieldValues>;
-}) => {
-  return (
-    <>
-      <div className="w-full md:w-[32%]">
-        <Input
-          id="rollNumber"
-          type="text"
-          placeholder="Roll number"
-          label="Roll Number"
-          register={register}
-        />
-      </div>
-      <div className="w-full md:w-[32%]">
-        <DropDown
-          onChange={() => {}}
-          dropdownOptions={classesOption}
-          title="Class"
-          id="Class"
-        />
-      </div>
-    </>
-  );
-};
