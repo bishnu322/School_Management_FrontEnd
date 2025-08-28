@@ -75,20 +75,11 @@ const Signin = () => {
               Email
             </label>
 
-            <Input<ISignInFormValues>
+            <Input
               type="email"
-              placeholder="email"
+              placeholder="example@gmail.com"
               id="email"
               register={register}
-            />
-
-            {/* <input
-              type="text"
-              // name="email"
-              id="email"
-              placeholder="example@gmail.com"
-              {...register("email")}
-              className="px-2 py-2 outline-none border-2 border-indigo-400 rounded  focus:border-indigo-800"
             />
             {errors.email ? (
               <p className="text-red-500 text-sm">
@@ -97,29 +88,20 @@ const Signin = () => {
             ) : (
               <p className="text-transparent text-sm"> </p>
             )}
-          </div> */}
 
             {/* password input */}
-            <div className="flex flex-col">
-              <label htmlFor="password" className="text-lg font-semibold">
-                Password
-              </label>
-              <input
-                type="password"
-                // name="password"
-                id="password"
-                placeholder="password"
-                {...register("password")}
-                className="px-2 py-2 outline-none border-2 border-indigo-400 rounded focus:border-indigo-800"
-              />
-              {errors.password ? (
-                <p className="text-red-500 text-sm">
-                  {errors.password.message}
-                </p>
-              ) : (
-                <p className="text-transparent text-sm"> </p>
-              )}
-            </div>
+
+            <Input
+              type="password"
+              placeholder="************"
+              id="password"
+              register={register}
+            />
+            {errors.password ? (
+              <p className="text-red-500 text-sm">{errors.password.message}</p>
+            ) : (
+              <p className="text-transparent text-sm"> </p>
+            )}
 
             <button className="w-full mt-2 py-2 bg-indigo-600 rounded cursor-pointer font-semibold text-md text-gray-300 hover:bg-indigo-800 transition-all duration-500">
               Login

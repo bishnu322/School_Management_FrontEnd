@@ -1,3 +1,4 @@
+import type { FieldValues, UseFormRegister } from "react-hook-form";
 import { cn } from "../../utils/cn";
 
 interface DropDownOption {
@@ -8,8 +9,7 @@ interface DropDownProps {
   dropdownOptions: DropDownOption[];
   title: string;
   id: string;
-  onChange: (value: string) => void;
-  register?: React.ReactNode;
+  register?: UseFormRegister<FieldValues>;
   className?: string;
 }
 
@@ -17,8 +17,8 @@ const DropDown: React.FC<DropDownProps> = ({
   dropdownOptions,
   title,
   id,
-  onChange,
   className,
+  register,
 }) => {
   return (
     <div className="flex flex-col gap-2 font-semibold">
@@ -32,8 +32,7 @@ const DropDown: React.FC<DropDownProps> = ({
         )}
         // name={id}
         id={id}
-        onChange={(e) => onChange(e.target.value)}
-        // {...register(`${id}`)}
+        {...(register ? register(id) : {})}
       >
         {dropdownOptions.map((roles) => (
           <option key={roles.title} value={roles.title}>
