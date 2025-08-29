@@ -10,7 +10,7 @@ export const StaffData = ({
     <>
       <div className="w-full md:w-[32%]">
         <Input
-          id="empId"
+          id="employee_id"
           label="Employee Id"
           type="text"
           placeholder="Employee Id"
@@ -49,7 +49,7 @@ export const StaffData = ({
       </div>
       <div className="w-full md:w-[32%]">
         <Input
-          id="experience"
+          id="experienceYear"
           type="text"
           placeholder="Experience"
           label="Year of Experience"
@@ -59,14 +59,14 @@ export const StaffData = ({
 
       <div className="w-full md:w-[32%]">
         <Input
-          id="joinDate"
+          id="date_of_join"
           type="date"
           placeholder="Joining Date"
           label="Joining Date"
           register={register}
         />
       </div>
-      <div className="w-full md:w-[32%]">
+      {/* <div className="w-full md:w-[32%]">
         <Input
           id="classTeacher"
           type="text"
@@ -74,11 +74,11 @@ export const StaffData = ({
           label="Class Teacher"
           register={register}
         />
-      </div>
+      </div> */}
 
       <div className="w-full md:w-[32%]">
         <Input
-          id="staffData"
+          id="staff_data"
           type="text"
           placeholder="Staff description"
           label="Staff description"
