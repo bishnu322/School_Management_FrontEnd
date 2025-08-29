@@ -3,6 +3,7 @@ import { cn } from "../../utils/cn";
 
 interface DropDownOption {
   title: string;
+  _id: string;
 }
 
 interface DropDownProps {
@@ -35,7 +36,7 @@ const DropDown: React.FC<DropDownProps> = ({
         {...(register ? register(id) : {})}
       >
         {dropdownOptions.map((roles) => (
-          <option key={roles.title} value={roles.title}>
+          <option key={roles.title} value={roles._id}>
             {roles.title}
           </option>
         ))}
