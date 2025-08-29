@@ -1,16 +1,14 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Input from "../../shared/DesignSystem/input/Input";
-import DropDown from "../DropDown";
-import {
-  useForm,
-  type FieldValues,
-  type UseFormRegister,
-} from "react-hook-form";
-import {
-  classesOption,
-  genderOption,
-  roleDropdown,
-} from "../../types/global.type";
+import DropDown from "../../shared/DesignSystem/dropdown/DropDown";
+import { useForm } from "react-hook-form";
+import { genderOption } from "../../types/global.type";
+import { StudentData } from "./StudentData";
+import { StaffData } from "./StaffData";
+import { signUpApi } from "../../api/auth.api";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { roleApi } from "../../api/role/role.api";
+import { useGetRole } from "../../api/role/role";
 
 const UserRegistration = () => {
   const [roleState, setRoleState] = useState("");
@@ -20,96 +18,149 @@ const UserRegistration = () => {
     setRoleState(e);
   };
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch } = useForm();
 
-  const onSubmit = (data: any) => setUserData({ ...data, role: roleState });
-  // console.log(userData);
+  const { role } = watch();
+  useEffect(() => {
+    OnChangeStateOfRole(role);
+  }, [role]);
 
-  // console.log(watch);
   console.log(userData);
+
+  const { mutate } = useMutation({
+    mutationFn: signUpApi,
+    onSuccess: (response: any) => {
+      console.log(response.data);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const query = useQuery({
+    queryFn: roleApi,
+    queryKey: ["role"],
+  });
+  console.log(query.data);
+
+  const roleDropdown = useGetRole();
+
+  console.log({ roleDropdown });
+
+  const isStudent = useMemo(() => {
+    if (roleDropdown.length === 0) return false;
+
+    const studentId = roleDropdown.find((el) => el.title === "STUDENT")?._id;
+
+    if (!studentId) return false;
+
+    return roleState === studentId;
+  }, [roleState]);
+
+  const onSubmit = (data: any) => {
+    setUserData({ ...data, role: roleState });
+    mutate(data);
+  };
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="flex px-5 py-3 gap-3 justify-between flex-wrap h-full"
     >
-      <DropDown
-        dropdownOptions={roleDropdown}
-        title="Role"
-        id="role"
-        onChange={OnChangeStateOfRole}
-        // {...register(roleState)}
-        // register={register}
-      />
+      <div className="w-full md:w-[32%]">
+        <DropDown
+          dropdownOptions={roleDropdown}
+          title="Role"
+          id="role"
+          register={register}
+        />
+      </div>
 
-      <Input
-        id="firstName"
-        type="text"
-        placeholder="First Name"
-        label="First Name"
-        register={register}
-      />
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="first_name"
+          type="text"
+          placeholder="First Name"
+          label="First Name"
+          register={register}
+        />
+      </div>
 
-      <Input
-        id="lastName"
-        type="text"
-        placeholder="Last Name"
-        label="Last Name"
-        register={register}
-      />
-      <Input
-        id="email"
-        type="email"
-        placeholder="example@gmail.com"
-        label="Email"
-        register={register}
-      />
-      <Input
-        id="phoneNumber"
-        type="number"
-        placeholder="0000000000"
-        label="Phone Number"
-        register={register}
-      />
-      <Input
-        id="dateOfBirth"
-        type="date"
-        placeholder="dd-mm-yyyy"
-        label="Date of Birth"
-        register={register}
-      />
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="last_name"
+          type="text"
+          placeholder="Last Name"
+          label="Last Name"
+          register={register}
+        />
+      </div>
 
-      <Input
-        id="address"
-        type="text"
-        placeholder="Address"
-        label="Address"
-        register={register}
-      />
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="email"
+          type="email"
+          placeholder="example@gmail.com"
+          label="Email"
+          register={register}
+        />
+      </div>
 
-      <Input
-        id="image"
-        type="file"
-        placeholder="choose file"
-        label="Photo"
-        register={register}
-      />
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="phone_number"
+          type="number"
+          placeholder="0000000000"
+          label="Phone Number"
+          register={register}
+        />
+      </div>
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="date_of_birth"
+          type="date"
+          placeholder="dd-mm-yyyy"
+          label="Date of Birth"
+          register={register}
+        />
+      </div>
 
-      <DropDown
-        onChange={() => {}}
-        dropdownOptions={genderOption}
-        title="Gender"
-        id="gender"
-        // register={register}
-      />
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="address"
+          type="text"
+          placeholder="Address"
+          label="Address"
+          register={register}
+        />
+      </div>
 
-      {roleState === "STUDENT" ? (
+      <div className="w-full md:w-[32%]">
+        <Input
+          id="profile_image"
+          type="file"
+          placeholder="choose file"
+          label="Photo"
+          register={register}
+        />
+      </div>
+
+      <div className="w-full md:w-[32%]">
+        <DropDown
+          id="gender"
+          title="Gender"
+          dropdownOptions={genderOption}
+          register={register}
+        />
+      </div>
+
+      {isStudent ? (
         <StudentData register={register} />
       ) : (
         <StaffData register={register} />
       )}
 
-      <button className="p-2 text-md rounded cursor-pointer bg-violet-600 font-bold transition-all duration-500 hover:bg-green-500 hover:text-green-900 mt-4 w-full md:w-[32%]">
+      <button className="text-md rounded cursor-pointer bg-indigo-600 text-gray-300 font-bold transition-all duration-500 hover:bg-[#1E2938] mt-8 w-full md:w-[32%]">
         Submit
       </button>
     </form>
@@ -117,95 +168,3 @@ const UserRegistration = () => {
 };
 
 export default UserRegistration;
-
-const StaffData = ({
-  register,
-}: {
-  register: UseFormRegister<FieldValues>;
-}) => {
-  return (
-    <>
-      <Input
-        id="empId"
-        label="Employee Id"
-        type="text"
-        placeholder="Employee Id"
-        register={register}
-      />
-      <Input
-        id="department"
-        type="text"
-        placeholder="Department"
-        label="Department"
-        register={register}
-      />
-      <Input
-        id="salary"
-        type="text"
-        placeholder="Salary"
-        label="Salary"
-        register={register}
-      />
-
-      <Input
-        id="qualification"
-        type="text"
-        placeholder="Qualification"
-        label="Qualification"
-        register={register}
-      />
-      <Input
-        id="experience"
-        type="text"
-        placeholder="Experience"
-        label="Year of Experience"
-        register={register}
-      />
-      <Input
-        id="joinDate"
-        type="date"
-        placeholder="Joining Date"
-        label="Joining Date"
-        register={register}
-      />
-      <Input
-        id="classTeacher"
-        type="text"
-        placeholder="Class Teacher"
-        label="Class Teacher"
-        register={register}
-      />
-      <Input
-        id="staffData"
-        type="text"
-        placeholder="Staff description"
-        label="Staff description"
-        register={register}
-      />
-    </>
-  );
-};
-
-const StudentData = ({
-  register,
-}: {
-  register: UseFormRegister<FieldValues>;
-}) => {
-  return (
-    <>
-      <Input
-        id="rollNumber"
-        type="text"
-        placeholder="Roll number"
-        label="Roll Number"
-        register={register}
-      />
-      <DropDown
-        onChange={() => {}}
-        dropdownOptions={classesOption}
-        title="Class"
-        id="Class"
-      />
-    </>
-  );
-};

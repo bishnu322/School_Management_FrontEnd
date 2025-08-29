@@ -1,7 +1,7 @@
-import AttendanceDetail from "../components/attendance/AttendanceDetail";
+import SideNav from "../components/sideNav/SideNav";
 import SearchField from "../components/attendance/SearchField";
+import AttendanceDetail from "../components/attendance/AttendanceDetail";
 import MyTable from "../components/attendance/table/Table";
-import SideNav from "../components/SideNav";
 
 const people = [
   {
@@ -47,16 +47,23 @@ const people = [
 ];
 
 const Attendance = () => {
+  // const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="flex justify-between  h-full">
-      <div>
+    <div className="flex min-h-screen bg-[#1E2938]">
+      {/* Sidebar (desktop) */}
+      <div className="hidden sm:block">
         <SideNav />
       </div>
-      <div className="flex flex-col gap-5 p-5 m-5  bg-[#1E2938] w-full rounded">
+
+      <div className="flex flex-col gap-5 m-5 p-5  bg-[#1E2938] w-full rounded">
+        <div className="sm:hidden flex items-center justify-between h-14 mb-2">
+          <h1 className="text-lg font-bold text-white">Attendance</h1>
+        </div>
+
+        {/* Page content */}
         <SearchField />
-
         <AttendanceDetail />
-
         <MyTable data={people} />
       </div>
     </div>
