@@ -2,29 +2,23 @@
 
 type Role = "ADMIN" | "STUDENT" | "TEACHER" | "ACCOUNTANT";
 
-interface IRoleDropdown {
+export interface IRoleDropdown {
   title: Role;
+  _id: string;
 }
-
-export const roleDropdown: IRoleDropdown[] = [
-  // { title: "SUPER_ADMIN" },
-  { title: "ADMIN" },
-  { title: "STUDENT" },
-  { title: "TEACHER" },
-  { title: "ACCOUNTANT" },
-];
 
 // ! for gender
 type Gender = "Male" | "Female" | "Other";
 
 interface IGenderDropdown {
   title: Gender;
+  _id: string;
 }
 
 export const genderOption: IGenderDropdown[] = [
-  { title: "Male" },
-  { title: "Female" },
-  { title: "Other" },
+  { title: "Male", _id: "MALE" },
+  { title: "Female", _id: "FEMALE" },
+  { title: "Other", _id: "OTHER" },
 ];
 
 // ! for classes
