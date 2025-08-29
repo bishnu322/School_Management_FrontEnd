@@ -18,7 +18,7 @@ interface IGenderDropdown {
 export const genderOption: IGenderDropdown[] = [
   { title: "Male", _id: "MALE" },
   { title: "Female", _id: "FEMALE" },
-  { title: "Other", _id: "OTHER" },
+  { title: "Other", _id: "Other" },
 ];
 
 // ! for classes
@@ -39,19 +39,53 @@ type DropDownClass =
 
 interface IClassDropDown {
   title: DropDownClass;
+  _id: string;
 }
 
 export const classesOption: IClassDropDown[] = [
-  { title: "Nursery" },
-  { title: "K.G" },
-  { title: "One" },
-  { title: "Two" },
-  { title: "Three" },
-  { title: "Four" },
-  { title: "Five" },
-  { title: "Six" },
-  { title: "Seven" },
-  { title: "Eight" },
-  { title: "Nine" },
-  { title: "Ten" },
+  { title: "Nursery", _id: "Nursery" },
+  {
+    title: "K.G",
+    _id: "K.G",
+  },
+  {
+    title: "One",
+    _id: "One",
+  },
+  {
+    title: "Two",
+    _id: "Two",
+  },
+  {
+    title: "Three",
+    _id: "Three",
+  },
+  {
+    title: "Four",
+    _id: "Four",
+  },
+  {
+    title: "Five",
+    _id: "Five",
+  },
+  {
+    title: "Six",
+    _id: "Six",
+  },
+  {
+    title: "Seven",
+    _id: "Seven",
+  },
+  {
+    title: "Eight",
+    _id: "Eight",
+  },
+  {
+    title: "Nine",
+    _id: "Nine",
+  },
+  {
+    title: "Ten",
+    _id: "Ten",
+  },
 ];

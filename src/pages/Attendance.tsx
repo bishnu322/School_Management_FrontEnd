@@ -47,25 +47,16 @@ const people = [
 ];
 
 const Attendance = () => {
-  // const [isOpen, setIsOpen] = useState(false);
-
   return (
-    <div className="flex min-h-screen bg-[#1E2938]">
-      {/* Sidebar (desktop) */}
-      <div className="hidden sm:block">
-        <SideNav />
+    <div className="flex flex-col gap-5 m-5 p-5  bg-[#1E2938]  rounded">
+      <div className="sm:hidden flex items-center justify-between h-14 mb-2">
+        <h1 className="text-lg font-bold text-white">Attendance</h1>
       </div>
 
-      <div className="flex flex-col gap-5 m-5 p-5  bg-[#1E2938] w-full rounded">
-        <div className="sm:hidden flex items-center justify-between h-14 mb-2">
-          <h1 className="text-lg font-bold text-white">Attendance</h1>
-        </div>
-
-        {/* Page content */}
-        <SearchField />
-        <AttendanceDetail />
-        <MyTable data={people} />
-      </div>
+      {/* Page content */}
+      <SearchField />
+      <AttendanceDetail />
+      <MyTable data={people} />
     </div>
   );
 };

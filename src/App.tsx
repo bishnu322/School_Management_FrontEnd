@@ -8,6 +8,7 @@ import ManagePayment from "./pages/ManagePayment";
 import Attendance from "./pages/Attendance";
 import { Toaster } from "react-hot-toast";
 import { useAuthStatus } from "./api/checkStatus/checkLoginStatus";
+import ClientLayout from "./layout/clientLayout";
 
 const App = () => {
   const { isError, isLoading } = useAuthStatus();
@@ -23,13 +24,14 @@ const App = () => {
     <div className="h-full bg-[#1E2938]">
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/home" element={<Home />} /> */}
           <Route path="/login" element={<Signin />} />
-          <Route path="/student" element={<Students />} />
-          <Route path="/payment" element={<ManagePayment />} />
-          <Route path="/attendance" element={<Attendance />} />
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/" element={<ClientLayout />}>
+            <Route path="/student" element={<Students />} />
+            <Route path="/payment" element={<ManagePayment />} />
+            <Route path="/attendance" element={<Attendance />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+          </Route>
         </Routes>
       </BrowserRouter>
 

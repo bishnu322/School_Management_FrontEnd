@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { api } from "./Axios/axiosInstance";
-import { generateSignUpFormData } from "./formData/generateFormData";
+import { api } from "../Axios/axiosInstance";
+import { generateSignUpFormData } from "../formData/generateFormData";
+
+// * sign  in APi call
 
 interface ILogin {
   email: string;
@@ -17,6 +19,8 @@ export const signInApi = async (data: ILogin) => {
     throw error.response.data;
   }
 };
+
+// * sign up api call
 
 export interface ISignUpData {
   first_name: string;

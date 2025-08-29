@@ -2,13 +2,14 @@ import { useEffect, useMemo, useState } from "react";
 import Input from "../../shared/DesignSystem/input/Input";
 import DropDown from "../../shared/DesignSystem/dropdown/DropDown";
 import { useForm } from "react-hook-form";
-import { genderOption } from "../../types/global.type";
+
 import { StudentData } from "./StudentData";
 import { StaffData } from "./StaffData";
-import { signUpApi } from "../../api/auth.api";
+import { signUpApi } from "../../api/auth/auth.api";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { roleApi } from "../../api/role/role.api";
 import { useGetRole } from "../../api/role/role";
+import { genderOption } from "../../types/global.type";
 
 const UserRegistration = () => {
   const [roleState, setRoleState] = useState("");
@@ -65,7 +66,7 @@ const UserRegistration = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex px-5 py-3 gap-3 justify-between flex-wrap h-full"
+      className="flex px-5 py-3 gap-3 justify-between flex-wrap"
     >
       <div className="w-full md:w-[32%]">
         <DropDown
@@ -160,7 +161,7 @@ const UserRegistration = () => {
         <StaffData register={register} />
       )}
 
-      <button className="text-md rounded cursor-pointer bg-indigo-600 text-gray-300 font-bold transition-all duration-500 hover:bg-[#1E2938] mt-8 w-full md:w-[32%]">
+      <button className="text-md rounded cursor-pointer bg-indigo-600 text-gray-300 font-bold transition-all duration-500 hover:bg-[#1E2938] mt-8  md:w-[32%]">
         Submit
       </button>
     </form>
