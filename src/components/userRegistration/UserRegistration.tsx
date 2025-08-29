@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Input from "../../shared/DesignSystem/input/Input";
 import DropDown from "../../shared/DesignSystem/dropdown/DropDown";
 import { useForm } from "react-hook-form";
-import { genderOption, roleDropdown } from "../../types/global.type";
+import { genderOption } from "../../types/global.type";
 import { StudentData } from "./StudentData";
 import { StaffData } from "./StaffData";
+import { signUpApi } from "../../api/auth.api";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { roleApi } from "../../api/role/role.api";
+import { useGetRole } from "../../api/role/role";
 
 const UserRegistration = () => {
   const [roleState, setRoleState] = useState("");
@@ -21,9 +25,42 @@ const UserRegistration = () => {
     OnChangeStateOfRole(role);
   }, [role]);
 
-  const onSubmit = (data: any) => setUserData({ ...data, role: roleState });
-
   console.log(userData);
+
+  const { mutate } = useMutation({
+    mutationFn: signUpApi,
+    onSuccess: (response: any) => {
+      console.log(response.data);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const query = useQuery({
+    queryFn: roleApi,
+    queryKey: ["role"],
+  });
+  console.log(query.data);
+
+  const roleDropdown = useGetRole();
+
+  console.log({ roleDropdown });
+
+  const isStudent = useMemo(() => {
+    if (roleDropdown.length === 0) return false;
+
+    const studentId = roleDropdown.find((el) => el.title === "STUDENT")?._id;
+
+    if (!studentId) return false;
+
+    return roleState === studentId;
+  }, [roleState]);
+
+  const onSubmit = (data: any) => {
+    setUserData({ ...data, role: roleState });
+    mutate(data);
+  };
 
   return (
     <form
@@ -41,7 +78,7 @@ const UserRegistration = () => {
 
       <div className="w-full md:w-[32%]">
         <Input
-          id="firstName"
+          id="first_name"
           type="text"
           placeholder="First Name"
           label="First Name"
@@ -51,7 +88,7 @@ const UserRegistration = () => {
 
       <div className="w-full md:w-[32%]">
         <Input
-          id="lastName"
+          id="last_name"
           type="text"
           placeholder="Last Name"
           label="Last Name"
@@ -71,7 +108,7 @@ const UserRegistration = () => {
 
       <div className="w-full md:w-[32%]">
         <Input
-          id="phoneNumber"
+          id="phone_number"
           type="number"
           placeholder="0000000000"
           label="Phone Number"
@@ -80,7 +117,7 @@ const UserRegistration = () => {
       </div>
       <div className="w-full md:w-[32%]">
         <Input
-          id="dateOfBirth"
+          id="date_of_birth"
           type="date"
           placeholder="dd-mm-yyyy"
           label="Date of Birth"
@@ -100,7 +137,7 @@ const UserRegistration = () => {
 
       <div className="w-full md:w-[32%]">
         <Input
-          id="image"
+          id="profile_image"
           type="file"
           placeholder="choose file"
           label="Photo"
@@ -117,7 +154,7 @@ const UserRegistration = () => {
         />
       </div>
 
-      {roleState === "STUDENT" ? (
+      {isStudent ? (
         <StudentData register={register} />
       ) : (
         <StaffData register={register} />
