@@ -1,52 +1,17 @@
-import SideNav from "../components/sideNav/SideNav";
 import SearchField from "../components/attendance/SearchField";
 import AttendanceDetail from "../components/attendance/AttendanceDetail";
 import MyTable from "../components/attendance/table/Table";
-
-const people = [
-  {
-    firstName: "Bishnu",
-    lastName: "Kohar",
-    role: "Student",
-    present: 24,
-    absent: 2,
-    leave: 4,
-    status: "Active",
-    remainingLeave: 2,
-  },
-  {
-    firstName: "Abhishek",
-    lastName: "Shrestha",
-    role: "Teacher",
-    present: 22,
-    absent: 0,
-    leave: 1,
-    status: "Active",
-    remainingLeave: 10,
-  },
-  {
-    firstName: "Murari",
-    lastName: "Gupta",
-    role: "Accountant",
-    present: 22,
-    absent: 0,
-    leave: 1,
-    status: "Active",
-    remainingLeave: 8,
-  },
-  {
-    firstName: "Sita",
-    lastName: "Sharma",
-    role: "Student",
-    present: 22,
-    absent: 0,
-    leave: 1,
-    status: "Inactive",
-    remainingLeave: 0,
-  },
-];
+import { useQuery } from "@tanstack/react-query";
+import { studentApi } from "../api/student/studentApi";
 
 const Attendance = () => {
+  const { data: studentData } = useQuery({
+    queryFn: () => studentApi(),
+    queryKey: ["fetch_student_data"],
+  });
+
+  // const person = studentData?.data ?? [];
+
   return (
     <div className="flex flex-col gap-5 m-5 p-5  bg-[#1E2938]  rounded">
       <div className="sm:hidden flex items-center justify-between h-14 mb-2">
@@ -56,7 +21,7 @@ const Attendance = () => {
       {/* Page content */}
       <SearchField />
       <AttendanceDetail />
-      <MyTable data={people} />
+      <MyTable data={studentData?.data ?? []} />
     </div>
   );
 };

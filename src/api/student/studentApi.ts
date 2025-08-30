@@ -4,9 +4,14 @@ import { api } from "../Axios/axiosInstance";
 
 type TGetAllStudent = TResponse<IStudentResponse[]>;
 
-export const studentApi = async (): TGetAllStudent => {
-  const response = await api.get<TGetAllStudent>("/student");
+export const studentApi = async (params?: {
+  query?: string;
+  role?: string;
+}): TGetAllStudent => {
+  const response = await api.get<TGetAllStudent>(`/student`, {
+    params,
+  });
 
-  console.log(response.data);
+  console.log(response);
   return response.data;
 };
