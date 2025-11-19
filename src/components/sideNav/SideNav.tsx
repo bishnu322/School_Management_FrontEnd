@@ -9,7 +9,7 @@ import {
   RiLogoutBoxRLine,
 } from "@remixicon/react";
 import { NavLink, useNavigate } from "react-router";
-import { logoutApi } from "../../api/auth.api";
+import { logoutApi } from "../../api/auth/auth.api";
 
 const sideNavConfig = {
   navLinks: [

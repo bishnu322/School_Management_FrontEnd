@@ -3,7 +3,7 @@ import SideNav from "../components/sideNav/SideNav";
 const ManagePayment = () => {
   return (
     <div className="flex gap-2 h-full">
-      <SideNav />
+      {/* <SideNav /> */}
       <h1>payment management</h1>
     </div>
   );

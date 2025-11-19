@@ -1,4 +1,4 @@
-import type { ISignUpData } from "../auth.api";
+import type { ISignUpData } from "../auth/auth.api";
 
 export const generateSignUpFormData = (signUpData: ISignUpData) => {
   const formData = new FormData();

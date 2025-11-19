@@ -10,7 +10,7 @@ export const StudentData = ({
 }) => {
   return (
     <>
-      <div className="w-full md:w-[32%]">
+      <div className=" md:w-[32%]">
         <Input
           id="roll_number"
           type="text"
@@ -19,7 +19,7 @@ export const StudentData = ({
           register={register}
         />
       </div>
-      <div className="w-full md:w-[32%]">
+      <div className=" md:w-[32%]">
         <DropDown
           dropdownOptions={classesOption}
           title="Class"
