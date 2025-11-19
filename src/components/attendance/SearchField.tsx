@@ -1,22 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
-import { studentApi } from "../../api/student/studentApi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const SearchField = () => {
-  const [search, setSearch] = useState("");
+interface IProps {
+  search: string;
+  setSearch: (value: string) => void;
+}
 
-  const { data } = useQuery({
-    queryFn: () =>
-      studentApi({
-        query: search,
-      }),
-    queryKey: ["Search", search],
-    enabled: search.length > 0,
-  });
+const SearchField: React.FC<IProps> = ({ search, setSearch }) => {
+  const [tempSearch, setTempSearch] = useState(search);
 
-  if (data) {
-    console.log(data.data);
-  }
+  useEffect(() => {
+    const searchTimeout = setTimeout(() => {
+      setSearch(tempSearch);
+    }, 500);
+
+    return () => {
+      clearTimeout(searchTimeout);
+    };
+  }, [tempSearch]);
 
   return (
     <div className="flex flex-col gap-2 w-full sm:w-96">
@@ -27,10 +27,10 @@ const SearchField = () => {
         Search
       </label>
       <input
-        value={search}
+        value={tempSearch}
         type="text"
         id="search"
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => setTempSearch(e.target.value)}
         placeholder="Search to find attendance detail ..."
         className="w-full px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base transition-all duration-300 outline-none bg-gray-700 rounded focus:ring-2 focus:ring-blue-500"
       />
