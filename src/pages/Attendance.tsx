@@ -4,6 +4,7 @@ import MyTable from "../components/attendance/table/Table";
 import { useQuery } from "@tanstack/react-query";
 import { studentApi } from "../api/student/studentApi";
 import { useState } from "react";
+import DatePicker from "../components/attendance/DatePicker";
 
 const Attendance = () => {
   const [search, setSearch] = useState("");
@@ -26,6 +27,9 @@ const Attendance = () => {
       <SearchField search={search} setSearch={setSearch} />
 
       <AttendanceDetail />
+
+      <DatePicker />
+
       <MyTable data={studentData?.data ?? []} />
     </div>
   );

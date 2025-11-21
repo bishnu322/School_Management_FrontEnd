@@ -11,6 +11,8 @@ export const AttendanceSelector = ({
 }: IAttendanceSelectorProps) => {
   const [attendance, setAttendance] = useState(defaultValue);
 
+  console.log({ attendance });
+
   useEffect(() => {
     if (!attendance) return;
 
