@@ -9,7 +9,7 @@ import DatePicker from "../components/attendance/DatePicker";
 const Attendance = () => {
   const [search, setSearch] = useState("");
 
-  const { data: studentData } = useQuery({
+  const { data: studentData, isLoading } = useQuery({
     queryFn: () =>
       studentApi({
         query: search,
@@ -17,6 +17,9 @@ const Attendance = () => {
     queryKey: ["Search", search],
     // enabled: search.length > 0,
   });
+
+  if (isLoading) return <div>Loading...</div>;
+  console.log({ studentData });
 
   return (
     <div className="flex flex-col gap-5 m-5 p-5  bg-[#1E2938]  rounded">
