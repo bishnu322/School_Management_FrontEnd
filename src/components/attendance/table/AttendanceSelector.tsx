@@ -1,9 +1,11 @@
 // AttendanceSelector.tsx
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
+import type { IUserAttendance } from "./Table";
 
 interface IAttendanceSelectorProps {
   user_id: string;
-  defaultValue: "" | "ABSENT" | "PRESENT";
+  userData?: IUserAttendance[];
+  defaultValue?: "" | "ABSENT" | "PRESENT";
   upsertAttendanceHandler: (
     status: "ABSENT" | "PRESENT",
     user_id: string
@@ -12,21 +14,18 @@ interface IAttendanceSelectorProps {
 
 export const AttendanceSelector = ({
   user_id,
-  defaultValue,
+  userData,
   upsertAttendanceHandler,
 }: IAttendanceSelectorProps) => {
-  const [attendance, setAttendance] = useState(defaultValue);
-
-  useEffect(() => {
-    setAttendance(defaultValue);
-  }, [defaultValue]);
+  const attendanceValue = useMemo(() => {
+    return userData?.find((user) => user.user_id === user_id)?.status;
+  }, [userData, user_id]);
 
   return (
     <select
-      value={attendance}
+      value={attendanceValue}
       onChange={(e) => {
         const value = e.target.value as "ABSENT" | "PRESENT";
-        setAttendance(value);
         upsertAttendanceHandler(value, user_id);
       }}
       className="text-gray-300 px-2 py-1 rounded"

@@ -2,32 +2,51 @@ import { useState } from "react";
 import type { IStudentResponse } from "../../../types/student.type";
 import { AttendanceSelector } from "./AttendanceSelector";
 import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
+import { blue, red } from "@mui/material/colors";
 import UpdateAttendance from "../UpdateAttendance";
-// import EditIcon from "@mui/icons-material/Edit";
+import EditDocumentIcon from "@mui/icons-material/EditDocument";
 
 interface MyTableProps {
   data: IStudentResponse[];
 }
 
-interface IUserAttendance {
+export interface IUserAttendance {
   user_id: string;
   status: "" | "ABSENT" | "PRESENT";
 }
 
 const MyTable: React.FC<MyTableProps> = ({ data }) => {
-  const [userData, setUserData] = useState<IUserAttendance>({
-    user_id: "",
-    status: "",
-  });
+  const [userData, setUserData] = useState<IUserAttendance[]>(
+    data.map((el) => ({ user_id: el._id, status: "" }))
+  );
 
   const [updateAttendanceSection, setUpdateAttendanceSection] = useState(false);
+  const [user, setUser] = useState("");
 
   const upsertAttendanceHandler = (
     status: "ABSENT" | "PRESENT",
     user_id: string
   ) => {
-    setUserData({ user_id, status });
-    console.log("Updated:", { user_id, status });
+    const newUserData = [...userData];
+
+    newUserData.map((el) => {
+      if (el.user_id === user_id) {
+        el.status = status;
+      }
+    });
+
+    setUserData(newUserData);
+  };
+
+  const attendanceUpdateHandler = (
+    updateAttendanceSectionValue: boolean,
+    userValue: string
+  ) => {
+    setUpdateAttendanceSection(updateAttendanceSectionValue);
+    setUser(userValue);
+    console.log(updateAttendanceSection, user);
   };
 
   console.log({ userData });
@@ -71,24 +90,23 @@ const MyTable: React.FC<MyTableProps> = ({ data }) => {
               <td className="border-r border-gray-500 text-center px-4 py-2">
                 <AttendanceSelector
                   user_id={value._id}
-                  defaultValue=""
+                  userData={userData}
                   upsertAttendanceHandler={upsertAttendanceHandler}
                 />
               </td>
 
-              <td className="text-center px-4 py-2 flex justify-center gap-2">
-                <Button
-                  variant="contained"
+              <td className="text-center px-4 flex justify-center items-center">
+                <IconButton
+                  onClick={() => attendanceUpdateHandler(true, value._id)}
+                  sx={{ color: blue[400] }}
                   size="small"
-                  onClick={() => setUpdateAttendanceSection(true)}
-                  sx={{ cursor: "pointer" }}
                 >
-                  edit
-                </Button>
+                  <EditDocumentIcon fontSize="small" />
+                </IconButton>
 
-                <Button variant="outlined" size="small">
-                  update
-                </Button>
+                <IconButton sx={{ color: red[400] }}>
+                  <DeleteIcon />
+                </IconButton>
               </td>
             </tr>
           ))}
@@ -103,6 +121,7 @@ const MyTable: React.FC<MyTableProps> = ({ data }) => {
 
       {updateAttendanceSection ? (
         <UpdateAttendance
+          user_id={user}
           setUpdateAttendanceSection={setUpdateAttendanceSection}
         />
       ) : (
