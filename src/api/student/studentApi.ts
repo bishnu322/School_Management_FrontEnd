@@ -15,3 +15,10 @@ export const studentApi = async (params?: {
   console.log(response);
   return response.data;
 };
+
+export const getStudentByIdApi = async (id: string) => {
+  const response = await api.get(`/student/${id}`);
+
+  console.log(response);
+  return response.data;
+};

@@ -1,13 +1,14 @@
 // AttendanceSelector.tsx
 import { useMemo } from "react";
 import type { IUserAttendance } from "./Table";
+// import { useQuery } from "@tanstack/react-query";
 
 interface IAttendanceSelectorProps {
   user_id: string;
   userData?: IUserAttendance[];
   defaultValue?: "" | "ABSENT" | "PRESENT";
   upsertAttendanceHandler: (
-    status: "ABSENT" | "PRESENT",
+    status: "" | "ABSENT" | "PRESENT",
     user_id: string
   ) => void;
 }
