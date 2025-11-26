@@ -25,7 +25,7 @@ export interface IUser extends IResponse {
 export interface IAttendance {
   _id: string;
   user_id: string;
-  status: string;
+  status: "" | "PRESENT" | "ABSENT";
   date: string;
 }
 

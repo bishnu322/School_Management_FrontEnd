@@ -35,3 +35,11 @@ export const createStudentAttendance = async (
 
   return response.data;
 };
+
+export const updateAttendance = async (id: string, status: string) => {
+  const response = await api.put(`/attendance/${id}`, { status });
+
+  console.log(response.data);
+
+  return response.data;
+};
