@@ -15,7 +15,6 @@ const Attendance = () => {
         query: search,
       }),
     queryKey: ["Search", search],
-    // enabled: search.length > 0,
   });
 
   if (isLoading) return <div>Loading...</div>;
@@ -26,6 +25,7 @@ const Attendance = () => {
       <div className="sm:hidden flex items-center justify-between h-14 mb-2">
         <h1 className="text-lg font-bold text-white">Attendance</h1>
       </div>
+
       {/* Page content */}
       <SearchField search={search} setSearch={setSearch} />
 

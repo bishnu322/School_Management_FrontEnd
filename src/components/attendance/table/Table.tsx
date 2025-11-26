@@ -26,7 +26,7 @@ const MyTable: React.FC<MyTableProps> = ({ data }) => {
   const [user, setUser] = useState("");
 
   const upsertAttendanceHandler = (
-    status: "ABSENT" | "PRESENT",
+    status: "" | "ABSENT" | "PRESENT",
     user_id: string
   ) => {
     const newUserData = [...userData];

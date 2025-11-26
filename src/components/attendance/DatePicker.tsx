@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const DatePicker = () => {
   const today = new Date().toISOString().split("T")[0];
