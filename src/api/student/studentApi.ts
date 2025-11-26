@@ -1,5 +1,6 @@
 import type { TResponse } from "../../types/generic";
 import type { IStudentResponse } from "../../types/student.type";
+import type { IStudentAttendance } from "../../types/studentAttendance";
 import { api } from "../Axios/axiosInstance";
 
 type TGetAllStudent = TResponse<IStudentResponse[]>;
@@ -16,8 +17,11 @@ export const studentApi = async (params?: {
   return response.data;
 };
 
-export const getStudentByIdApi = async (id: string) => {
-  const response = await api.get(`/student/${id}`);
+type TGetStudentAttendanceById = TResponse<IStudentAttendance>;
+export const getStudentByIdApi = async (
+  id: string
+): TGetStudentAttendanceById => {
+  const response = await api.get<TGetStudentAttendanceById>(`/student/${id}`);
 
   console.log(response);
   return response.data;
