@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { getStudentByIdApi } from "../../api/student/studentApi";
 import CloseIcon from "@mui/icons-material/Close";
 import Button from "@mui/material/Button";
-import { useState } from "react";
 
 interface IProps {
   name?: string;
@@ -11,19 +10,18 @@ interface IProps {
   user_id: string;
 }
 
-// const formatDate = (dateString: string) => {
-//   const date = new Date(dateString);
-//   return new Intl.DateTimeFormat("en-US", {
-//     year: "numeric",
-//     month: "short",
-//     day: "numeric",
-//     hour: "2-digit",
-//     minute: "2-digit",
-//   }).format(date);
-// };
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(date);
+};
 
 const UpdateAttendance: React.FC<IProps> = ({
-  // name = "default",
   setUpdateAttendanceSection,
   user_id,
 }) => {
@@ -33,18 +31,11 @@ const UpdateAttendance: React.FC<IProps> = ({
     queryFn: () => getStudentByIdApi(user_id),
   });
 
-  // memoizing created and updated data of the student
-  // const formattedDates = useMemo(() => {
-  //   if (!data?.data.user_id) return { date: "" };
-
-  //   return {
-  //     date: formatDate(data.data.user_id.date),
-  //   };
-  // }, [data?.data.user_id]);
+  // creating attendance using mutation
 
   if (isLoading) return <div>loading..</div>;
 
-  console.log("Attendance Data", data.data.user.first_name);
+  // console.log("Attendance Data", data?.data.user.first_name);
 
   return (
     <main
@@ -69,13 +60,12 @@ const UpdateAttendance: React.FC<IProps> = ({
         <div>
           <div>
             <span>Name: </span>
-
-            {data.data?.user?.first_name && data.data?.user?.last_name
+            {data?.data.user?.first_name && data?.data.user?.last_name
               ? `${data.data.user.first_name} ${data.data.user.last_name}`
               : "N/A"}
           </div>
 
-          <table className="min-w-full rounded bg-[#364152] text-gray-300 text-left mt-1">
+          <table className="min-w-full rounded bg-[#364152] text-gray-300 text-left mt-1 overflow-hidden ">
             <thead className="bg-gray-900 text-md text-gray-400 text-center">
               <tr>
                 <th className="border-r border-gray-500 px-4 py-2">Date</th>
@@ -91,7 +81,7 @@ const UpdateAttendance: React.FC<IProps> = ({
                       key={index}
                     >
                       <td className="border-r border-gray-600 px-4 py-2">
-                        {attendance.date}
+                        {formatDate(attendance.date)}
                       </td>
                       <td className="border-r border-gray-600 px-4 py-2">
                         {attendance.status}
@@ -101,7 +91,7 @@ const UpdateAttendance: React.FC<IProps> = ({
                       </td>
                     </tr>
                   ))
-                : ""}
+                : null}
             </tbody>
           </table>
         </div>

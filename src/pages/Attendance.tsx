@@ -21,11 +21,7 @@ const Attendance = () => {
   console.log({ studentData });
 
   return (
-    <div className="flex flex-col gap-5 m-5 p-5  bg-[#1E2938]  rounded">
-      <div className="sm:hidden flex items-center justify-between h-14 mb-2">
-        <h1 className="text-lg font-bold text-white">Attendance</h1>
-      </div>
-
+    <div className="flex flex-col gap-5 m-5 p-5  bg-[#1E2938] rounded">
       {/* Page content */}
       <SearchField search={search} setSearch={setSearch} />
 
