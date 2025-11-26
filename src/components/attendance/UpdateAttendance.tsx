@@ -1,8 +1,11 @@
 // // import { useQuery } from "@tanstack/react-query";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getStudentByIdApi } from "../../api/student/studentApi";
 import CloseIcon from "@mui/icons-material/Close";
 import Button from "@mui/material/Button";
+import { AttendanceSelector } from "./table/AttendanceSelector";
+import { updateAttendance } from "../../api/attendance";
+import toast from "react-hot-toast";
 
 interface IProps {
   name?: string;
@@ -31,11 +34,26 @@ const UpdateAttendance: React.FC<IProps> = ({
     queryFn: () => getStudentByIdApi(user_id),
   });
 
-  // creating attendance using mutation
+  // updating attendance using mutation
 
-  if (isLoading) return <div>loading..</div>;
+  const { mutate } = useMutation({
+    mutationFn: ({ id, status }: { id: string; status: string }) =>
+      updateAttendance(id, status),
+    onSuccess: () => {
+      toast.success("Attendance Updated Successfully");
+    },
+    onError: () => {
+      toast.error("Attendance Update Failed!");
+    },
+  });
+
+  const upsertAttendanceHandler = (status: string, id: string) => {
+    console.log(status, id);
+    mutate({ id, status });
+  };
 
   // console.log("Attendance Data", data?.data.user.first_name);
+  if (isLoading) return <div>loading..</div>;
 
   return (
     <main
@@ -84,7 +102,11 @@ const UpdateAttendance: React.FC<IProps> = ({
                         {formatDate(attendance.date)}
                       </td>
                       <td className="border-r border-gray-600 px-4 py-2">
-                        {attendance.status}
+                        <AttendanceSelector
+                          upsertAttendanceHandler={upsertAttendanceHandler}
+                          defaultValue={attendance.status ?? ""}
+                          user_id={attendance._id}
+                        />
                       </td>
                       <td className="border-r border-gray-600 px-4 py-2">
                         fej
