@@ -2,7 +2,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getStudentByIdApi } from "../../api/student/studentApi";
 import CloseIcon from "@mui/icons-material/Close";
-import Button from "@mui/material/Button";
 import { AttendanceSelector } from "./table/AttendanceSelector";
 import { updateAttendance } from "../../api/attendance";
 import toast from "react-hot-toast";
@@ -88,7 +87,6 @@ const UpdateAttendance: React.FC<IProps> = ({
               <tr>
                 <th className="border-r border-gray-500 px-4 py-2">Date</th>
                 <th className="border-r border-gray-500 px-4 py-2">Status</th>
-                <th className="border-r border-gray-500 px-4 py-2">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -108,18 +106,12 @@ const UpdateAttendance: React.FC<IProps> = ({
                           user_id={attendance._id}
                         />
                       </td>
-                      <td className="border-r border-gray-600 px-4 py-2">
-                        fej
-                      </td>
                     </tr>
                   ))
                 : null}
             </tbody>
           </table>
         </div>
-
-        {/* update button of attendance */}
-        <Button variant="contained">Update</Button>
       </div>
     </main>
   );

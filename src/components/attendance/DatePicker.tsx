@@ -1,8 +1,16 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const DatePicker = () => {
+interface IProps {
+  setCurrentDateValue: (value: string) => void;
+}
+
+const DatePicker: React.FC<IProps> = ({ setCurrentDateValue }) => {
   const today = new Date().toISOString().split("T")[0];
   const [currentDate, setCurrentDate] = useState(today);
+
+  useEffect(() => {
+    setCurrentDateValue(currentDate);
+  }, [currentDate, setCurrentDateValue]);
 
   return (
     <main>

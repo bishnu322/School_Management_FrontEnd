@@ -7,9 +7,13 @@ import IconButton from "@mui/material/IconButton";
 import { blue, red } from "@mui/material/colors";
 import UpdateAttendance from "../UpdateAttendance";
 import EditDocumentIcon from "@mui/icons-material/EditDocument";
+import { useMutation } from "@tanstack/react-query";
+import { createStudentAttendance } from "../../../api/attendance";
+import toast from "react-hot-toast";
 
 interface MyTableProps {
   data: IStudentResponse[];
+  currentDateValue: string;
 }
 
 export interface IUserAttendance {
@@ -17,28 +21,36 @@ export interface IUserAttendance {
   status: "" | "ABSENT" | "PRESENT";
 }
 
-const MyTable: React.FC<MyTableProps> = ({ data }) => {
-  const [userData, setUserData] = useState<IUserAttendance[]>(
-    data.map((el) => ({ user_id: el._id, status: "" }))
-  );
-
+const MyTable: React.FC<MyTableProps> = ({ data, currentDateValue }) => {
+  const [userDate, setUserDate] = useState(currentDateValue);
+  const [userStatus, setUserStatus] = useState("");
   const [updateAttendanceSection, setUpdateAttendanceSection] = useState(false);
   const [user, setUser] = useState("");
 
-  const upsertAttendanceHandler = (
-    status: "" | "ABSENT" | "PRESENT",
-    user_id: string
-  ) => {
-    const newUserData = [...userData];
+  // const [userData, setUserData] = useState<IUserAttendance[]>(
+  //   data.map((el) => ({ user_id: el._id, status: "" }))
+  // );
 
-    newUserData.map((el) => {
-      if (el.user_id === user_id) {
-        el.status = status;
-      }
-    });
+  // creating student attendance
+  const { mutate } = useMutation({
+    mutationFn: ({
+      user_id,
+      date,
+      status,
+    }: {
+      user_id: string;
+      date: string;
+      status: string;
+    }) => createStudentAttendance(user_id, date, status),
 
-    setUserData(newUserData);
-  };
+    mutationKey: ["createStudentAttendance"],
+    onSuccess: () => {
+      toast.success("attendance successfully created.");
+    },
+    onError: () => {
+      toast.error("failed to created attendance");
+    },
+  });
 
   const attendanceUpdateHandler = (
     updateAttendanceSectionValue: boolean,
@@ -49,7 +61,41 @@ const MyTable: React.FC<MyTableProps> = ({ data }) => {
     console.log(updateAttendanceSection, user);
   };
 
-  console.log({ userData });
+  // accessing data from Attendance selector
+  const upsertAttendanceHandler = (
+    status: "" | "ABSENT" | "PRESENT",
+    user_id: string
+  ) => {
+    // const newUserData = [...userData];
+    // newUserData.map((el) => {
+    //   if (el.user_id === user_id) {
+    //     el.status = status;
+    //   }
+    // });
+    // setUserData(newUserData);
+
+    if (!status) return;
+
+    console.log("Creating attendance:", {
+      status,
+      user_id,
+      date: currentDateValue,
+    });
+
+    // assigning the value to user_id status and selected date
+    setUserStatus(status);
+    setUserDate(currentDateValue);
+    setUser(user_id);
+
+    // calling mutation function to mutate data
+    mutate({
+      user_id,
+      date: currentDateValue,
+      status,
+    });
+  };
+
+  console.log(userDate, userStatus, user);
 
   return (
     <div className=" overflow-hidden rounded min-w-full divide-y divide-gray-200">
@@ -89,8 +135,7 @@ const MyTable: React.FC<MyTableProps> = ({ data }) => {
 
               <td className="border-r border-gray-500 text-center px-4 py-2">
                 <AttendanceSelector
-                  user_id={value._id}
-                  userData={userData}
+                  user_id={value.user._id}
                   upsertAttendanceHandler={upsertAttendanceHandler}
                 />
               </td>

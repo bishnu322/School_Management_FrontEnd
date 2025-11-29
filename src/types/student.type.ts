@@ -3,6 +3,7 @@ import type { IResponse } from "./generic";
 export interface IStudentResponse extends IResponse {
   // userdata
   user: {
+    _id: string;
     first_name: string;
     last_name: string;
     email: string;
