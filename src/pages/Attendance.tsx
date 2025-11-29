@@ -8,6 +8,7 @@ import DatePicker from "../components/attendance/DatePicker";
 
 const Attendance = () => {
   const [search, setSearch] = useState("");
+  const [currentDateValue, setCurrentDateValue] = useState("");
 
   const { data: studentData, isLoading } = useQuery({
     queryFn: () =>
@@ -27,9 +28,12 @@ const Attendance = () => {
 
       <AttendanceDetail />
 
-      <DatePicker />
+      <DatePicker setCurrentDateValue={setCurrentDateValue} />
 
-      <MyTable data={studentData?.data ?? []} />
+      <MyTable
+        data={studentData?.data ?? []}
+        currentDateValue={currentDateValue}
+      />
     </div>
   );
 };
